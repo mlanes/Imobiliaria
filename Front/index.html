@@ -12,36 +12,34 @@
 
 
 
+
    <title>Imobiliária :: Home</title>
 </head>
 
 <body>
-   <style src="node_modules/jquery/dist/jquery.min.js"></style>
-   <style src="node_modules/popper.js/dist/popper.min.js"></style>
-   <style src="node_modules/dist/js/bootstrap.min.js"></style>
-   <style src="script/index.js"></style>
+ 
 
-   <nav class="navbar bg-dark navbar-dark">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header fixed-brand">
-            <a class="navbar-brand" href="#">IMOBILIARIA</a>
-         
-         
-      </div>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" id="menu-toggle">
-            <span class="fal fa-align-justify"></span>
+   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+         <!-- Brand -->
+         <a class="navbar-brand mr-auto" href="#">Imobiliária</a>
+       
+         <!-- Toggler/collapsibe Button -->
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+           <span class="navbar-toggler-icon"></span>
          </button>
-      <!-- navbar-header-->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-         <ul class="nav navbar-nav">
-            <li class="active">
-               <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><span class="fal fa-align-justify"></span>
-               </button>
-            </li>
-         </ul>
-      </div>
-      <!-- bs-example-navbar-collapse-1 -->
-   </nav>
+       
+         <!-- Navbar links -->
+         <div class="collapse navbar-collapse" id="collapsibleNavbar">
+           <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+               <a class="nav-link" href="#">Perfil</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">Sair</a>
+             </li>           
+           </ul>
+         </div> 
+       </nav>
    <div id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
@@ -59,7 +57,7 @@
             <li>
                <a href="#"> <span class="fa-lg pull-right"></span>Localizações</a>
             </li>
-           
+
          </ul>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -69,7 +67,7 @@
             <div class="row">
                <div class="col-lg-12">
                   <h1>DASHBOARD</h1>
-                  <hr/>
+                  <hr />
                   <p>Aqui fica o contudo do DashBoard </p>
                </div>
             </div>
@@ -81,5 +79,8 @@
    <!-- jQuery -->
 
 </body>
-
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/popper.js/dist/popper.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<style src="script/index.js"></style>
 </html>
