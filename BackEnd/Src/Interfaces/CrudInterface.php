@@ -8,6 +8,7 @@ interface CrudInterface
     public function countItems();
     public function insert();
     public function select();
+    public function list();
     public function disable();
     public function enable();
 }
