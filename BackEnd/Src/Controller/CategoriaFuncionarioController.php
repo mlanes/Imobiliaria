@@ -17,13 +17,37 @@ class CategoriaFuncionarioController extends Controller
     {
         $categoriasFuncionario = $this->CategoriaFuncionario->select();
         $count = $this->CategoriaFuncionario->countItems();
-
-        require_once parent::loadView('CategoriaFuncionario', $this->view);
+        require_once parent::loadView($this->controller, $this->view);
     }
 
     public function setView($a)
     {
         $this->view = $a;
+    }
+
+    public function add()
+    {
+        isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
+        isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
+        isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
+
+        if ($_POST['nm_categoria'] != null && $_POST['ic_status'] != null && $_POST['nm_sigla'] != null) {
+            echo $_POST['nm_categoria'];
+            $this->CategoriaFuncionario->nm_categoria = $_POST['nm_categoria'];
+            $this->CategoriaFuncionario->ic_status = $_POST['ic_status'];
+            $this->CategoriaFuncionario->nm_sigla = $_POST['nm_sigla'];
+            $this->CategoriaFuncionario->insert();
+            $this->redirectUrl($this->controller);
+            exit;
+        } else {
+            echo 'Dados Inválidos';
+        }
+
+        require_once parent::loadView($this->controller, $this->view);
+    }
+
+    public function edit(array $param)
+    {
     }
 
     public function disable(array $param)
@@ -32,8 +56,8 @@ class CategoriaFuncionarioController extends Controller
         if ($param1 != "") {
             $this->CategoriaFuncionario->cd_categoria = $param1;
             $categoriasFuncionario = $this->CategoriaFuncionario->disable();
-            // header("Location: " . $this->reffer);
             $this->redirectUrl();
+            exit;
         } else {
             echo 'É necessário um código';
         }
@@ -45,8 +69,8 @@ class CategoriaFuncionarioController extends Controller
         if ($param1 != "") {
             $this->CategoriaFuncionario->cd_categoria = $param1;
             $categoriasFuncionario = $this->CategoriaFuncionario->enable();
-            header("Location: " . $this->reffer);
             $this->redirectUrl();
+            exit;
         } else {
             echo 'É necessário um código';
         }
