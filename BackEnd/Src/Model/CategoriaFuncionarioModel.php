@@ -70,6 +70,20 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
         }
     }
 
+    public function select()
+    {
+        try {
+            $sql = "SELECT * FROM tb_categoria_funcionario WHERE nm_categoria = :cd_categoria;";
+            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
+            $stmt = $this->link->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS);
+            return $result;
+        } catch (Exception $e) {
+            echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
+        }
+    }
+
     public function disable()
     {
         try {
