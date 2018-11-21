@@ -1,5 +1,5 @@
 <h1>Categorias Funcionario</h1>
-<b>Total: <?= $count ?> itens.</b>
+<p>Total: <b><?= $count ?> itens.</b></p>
 <table>
     <thead>
         <tr>
@@ -20,13 +20,30 @@
         foreach ($categoriasFuncionario as $row => $column) {
             ?>
             <tr>
+            <?php
+            $status = 0;
+            foreach ($column as $key => $value) {
+                if ($key == "cd_categoria") {
+                    $cd_categoria = $value;
+                }
+                if ($key == "ic_status") {
+                    $status = $value;
+                } ?>
+                <td><?= $value ?></td>
                 <?php
-                foreach ($column as $key => $value):
-                    ?>
-                    <td><?= $value ?></td>
-                    <?php
-                endforeach;
-                ?>
+            } ?>
+                <td><a href="">Ver</a></td>
+                <td><a href="">Editar</a></td>
+                <?php
+                    if ($status):
+                        ?>
+                            <td><a href="<?= HOME_URL . $this->controller . '/Disable/' . $cd_categoria ?>">Desabilitar</a></td>
+                        <?php
+                    else:
+                        ?>
+                            <td><a href="<?= HOME_URL . $this->controller . '/Enable/' . $cd_categoria ?>">Habilitar</a></td>
+                        <?php
+                    endif; ?>
             </tr>
             <?php
         }
