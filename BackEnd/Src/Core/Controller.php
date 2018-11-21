@@ -16,7 +16,7 @@ class Controller
     public function redirectUrl(String $url = null)
     {
         if ($url != null) {
-            header("Location: " . $url);
+            header("Location: " . HOME_URL . $url);
         } else {
             $this->getReffer();
             header("Location: " . $this->reffer);
