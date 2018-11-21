@@ -1,5 +1,6 @@
 <h1>Categorias Funcionario</h1>
 <p>Total: <b><?= $count ?> itens.</b></p>
+<a href="<?= HOME_URL . $this->controller . '/Add/' ?>">Cadastrar</a>
 <table>
     <thead>
         <tr>
@@ -22,26 +23,22 @@
             <tr>
             <?php
             $status = 0;
+            $categoriaFuncionario = $column;
             foreach ($column as $key => $value) {
-                if ($key == "cd_categoria") {
-                    $cd_categoria = $value;
-                }
-                if ($key == "ic_status") {
-                    $status = $value;
-                } ?>
+                ?>
                 <td><?= $value ?></td>
                 <?php
             } ?>
                 <td><a href="">Ver</a></td>
-                <td><a href="">Editar</a></td>
+                <td><a href="<?= HOME_URL . $this->controller . '/Edit/' . $categoriaFuncionario->cd_categoria ?>">Editar</a></td>
                 <?php
-                    if ($status):
+                    if ($categoriaFuncionario->ic_status):
                         ?>
-                            <td><a href="<?= HOME_URL . $this->controller . '/Disable/' . $cd_categoria ?>">Desabilitar</a></td>
+                            <td><a href="<?= HOME_URL . $this->controller . '/Disable/' . $categoriaFuncionario->cd_categoria ?>">Desabilitar</a></td>
                         <?php
                     else:
                         ?>
-                            <td><a href="<?= HOME_URL . $this->controller . '/Enable/' . $cd_categoria ?>">Habilitar</a></td>
+                            <td><a href="<?= HOME_URL . $this->controller . '/Enable/' . $categoriaFuncionario->cd_categoria ?>">Habilitar</a></td>
                         <?php
                     endif; ?>
             </tr>
