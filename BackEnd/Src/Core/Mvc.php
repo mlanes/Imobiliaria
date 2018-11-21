@@ -63,20 +63,25 @@ class Mvc
     public function getUrl() {
 
         $p = explode("/", $_GET["path"]);
-        for ($i = 0; $i < count($p); $i++) {
+        $countParams = count($p);
+
+        // Teste
+        $this->param = [];
+
+        for ($i = 0; $i < $countParams; $i++) {
             if ($i == 0) {
                 $this->controller = ucfirst($p[$i] . 'Controller');
             } else if ($i == 1) {
                 $this->action = strtolower($p[$i]);
             } else {
-                $this->param .= '/' . $p[$i];
+                $this->param[] = $p[$i];
             }
         }
         if ($this->action == null) {
             $this->action = 'index';
         }
         if ($this->param == null) {
-            $this->param = null;
+            $this->param[] = "";
         }
 
     }
@@ -85,7 +90,9 @@ class Mvc
 
         echo '<p>Controller: ' . $this->controller . '</p>';
         echo '<p>Action: ' . $this->action . '</p>';
-        echo '<p>Params: ' . $this->param . '</p>';
+        echo '<p>Params: ';
+        var_dump($this->param);
+        echo '</p>';
 
     }
 
