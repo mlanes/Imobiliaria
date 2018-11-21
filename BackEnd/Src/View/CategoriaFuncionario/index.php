@@ -4,32 +4,23 @@
 <table>
     <thead>
         <tr>
-            <?php
-            foreach ($categoriasFuncionario as $row => $column) {
-                foreach ($column as $key => $value):
-                    ?>
-                    <th><?= $key ?></th>
-                    <?php
-                endforeach;
-                break;
-            }
-            ?>
+            <td>Código</td>
+            <td>Status</td>
+            <td>Nome</td>
+            <td>Sigla</td>
+            <td>Ações</td>
         </tr>
     </thead>
     <tbody>
         <?php
-        foreach ($categoriasFuncionario as $row => $column) {
+        foreach ($categoriasFuncionario as $categoriaFuncionario) {
             ?>
             <tr>
-            <?php
-            $status = 0;
-            $categoriaFuncionario = $column;
-            foreach ($column as $key => $value) {
-                ?>
-                <td><?= $value ?></td>
-                <?php
-            } ?>
-                <td><a href="">Ver</a></td>
+                <td><?= $categoriaFuncionario->cd_categoria ?></td>
+                <td><?= $categoriaFuncionario->ic_status ?></td>
+                <td><?= $categoriaFuncionario->nm_categoria ?></td>
+                <td><?= $categoriaFuncionario->nm_sigla ?></td>
+                <td><a href="<?= HOME_URL . $this->controller . '/View/' . $categoriaFuncionario->cd_categoria ?>">Ver</a></td>
                 <td><a href="<?= HOME_URL . $this->controller . '/Edit/' . $categoriaFuncionario->cd_categoria ?>">Editar</a></td>
                 <?php
                     if ($categoriaFuncionario->ic_status):
