@@ -73,9 +73,9 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
     public function select()
     {
         try {
-            $sql = "SELECT * FROM tb_categoria_funcionario WHERE nm_categoria = :cd_categoria;";
-            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
+            $sql = "SELECT * FROM tb_categoria_funcionario WHERE cd_categoria = :cd_categoria;";
             $stmt = $this->link->prepare($sql);
+            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS);
             return $result;

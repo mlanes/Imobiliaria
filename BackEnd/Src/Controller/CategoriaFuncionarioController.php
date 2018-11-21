@@ -49,6 +49,19 @@ class CategoriaFuncionarioController extends Controller
     {
     }
 
+    public function view(array $param)
+    {
+        $param1 = $param[0];
+        if ($param1 != "") {
+            $this->CategoriaFuncionario->cd_categoria = $param1;
+            $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
+        } else {
+            echo 'É necessário um código';
+        }
+
+        require_once parent::loadView($this->controller, $this->view);
+    }
+
     public function disable(array $param)
     {
         $param1 = $param[0];
