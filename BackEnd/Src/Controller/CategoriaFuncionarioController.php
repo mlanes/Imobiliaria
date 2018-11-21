@@ -47,6 +47,32 @@ class CategoriaFuncionarioController extends Controller
 
     public function edit(array $param)
     {
+        $cd_categoria = $param[0];
+        if ($cd_categoria != "") {
+            $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
+            $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
+            $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
+            
+            if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
+                $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+                $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
+                $this->CategoriaFuncionario->ic_status = $ic_status;
+                $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
+                $this->CategoriaFuncionario->update();
+                $this->redirectUrl($this->controller);
+            } else {
+                $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+                $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
+                $nm_categoria = $categoriaFuncionario->nm_categoria;
+                $ic_status = $categoriaFuncionario->ic_status;
+                $nm_sigla = $categoriaFuncionario->nm_sigla;
+            }
+        } else {
+            echo 'É necessário um código';
+            $this->redirectUrl();
+        }
+
+        require_once parent::loadView($this->controller, $this->view);
     }
 
     public function view(array $param)

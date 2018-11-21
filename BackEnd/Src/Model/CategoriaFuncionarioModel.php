@@ -57,6 +57,21 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
         }
     }
 
+    public function update()
+    {
+        try {
+            $sql = "UPDATE tb_categoria_funcionario SET nm_categoria = :nm_categoria, ic_status = :ic_status, nm_sigla = :nm_sigla WHERE cd_categoria = :cd_categoria;";
+            $stmt = $this->link->prepare($sql);
+            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
+            $stmt->bindValue(":nm_categoria", $this->nm_categoria);
+            $stmt->bindValue(":ic_status", $this->ic_status);
+            $stmt->bindValue(":nm_sigla", $this->nm_sigla);
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
+        }
+    }
+
     public function list()
     {
         try {
