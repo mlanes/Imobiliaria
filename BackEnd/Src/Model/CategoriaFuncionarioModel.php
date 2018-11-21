@@ -57,7 +57,7 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
         }
     }
 
-    public function select()
+    public function list()
     {
         try {
             $sql = "SELECT * FROM tb_categoria_funcionario;";

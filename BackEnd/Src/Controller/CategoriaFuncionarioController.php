@@ -15,7 +15,7 @@ class CategoriaFuncionarioController extends Controller
 
     public function index($param)
     {
-        $categoriasFuncionario = $this->CategoriaFuncionario->select();
+        $categoriasFuncionario = $this->CategoriaFuncionario->list();
         $count = $this->CategoriaFuncionario->countItems();
         require_once parent::loadView($this->controller, $this->view);
     }
@@ -27,15 +27,14 @@ class CategoriaFuncionarioController extends Controller
 
     public function add()
     {
-        isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
-        isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
-        isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
+        $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
+        $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
+        $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
 
-        if ($_POST['nm_categoria'] != null && $_POST['ic_status'] != null && $_POST['nm_sigla'] != null) {
-            echo $_POST['nm_categoria'];
-            $this->CategoriaFuncionario->nm_categoria = $_POST['nm_categoria'];
-            $this->CategoriaFuncionario->ic_status = $_POST['ic_status'];
-            $this->CategoriaFuncionario->nm_sigla = $_POST['nm_sigla'];
+        if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
+            $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
+            $this->CategoriaFuncionario->ic_status = $ic_status;
+            $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
             $this->CategoriaFuncionario->insert();
             $this->redirectUrl($this->controller);
             exit;
