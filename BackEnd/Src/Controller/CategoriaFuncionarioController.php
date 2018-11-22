@@ -39,7 +39,9 @@ class CategoriaFuncionarioController extends Controller
             $this->redirectUrl($this->controller);
             exit;
         } else {
-            echo 'Dados Inválidos';
+            // echo 'Preencha todos os campos';
+            // $this->redirectUrl();
+            // exit;
         }
 
         require_once parent::loadView($this->controller, $this->view);
@@ -60,6 +62,7 @@ class CategoriaFuncionarioController extends Controller
                 $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
                 $this->CategoriaFuncionario->update();
                 $this->redirectUrl($this->controller);
+                exit;
             } else {
                 $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
                 $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
@@ -70,6 +73,7 @@ class CategoriaFuncionarioController extends Controller
         } else {
             echo 'É necessário um código';
             $this->redirectUrl();
+            exit;
         }
 
         require_once parent::loadView($this->controller, $this->view);
@@ -83,6 +87,8 @@ class CategoriaFuncionarioController extends Controller
             $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
         } else {
             echo 'É necessário um código';
+            $this->redirectUrl();
+            exit;
         }
 
         require_once parent::loadView($this->controller, $this->view);
@@ -98,6 +104,8 @@ class CategoriaFuncionarioController extends Controller
             exit;
         } else {
             echo 'É necessário um código';
+            $this->redirectUrl();
+            exit;
         }
     }
 
@@ -111,6 +119,8 @@ class CategoriaFuncionarioController extends Controller
             exit;
         } else {
             echo 'É necessário um código';
+            $this->redirectUrl();
+            exit;
         }
     }
 }
