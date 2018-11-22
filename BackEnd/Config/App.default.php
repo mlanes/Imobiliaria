@@ -10,3 +10,6 @@ define('DB_NAME', '');
 define('DB_USER', '');
 define('DB_PASSWORD', '');
 define('DB_CHARSET', 'utf-8');
+
+define('DATE_TIMEZONE', 'America/Sao_Paulo');
+define('DISPLAY_ERRORS', true);
