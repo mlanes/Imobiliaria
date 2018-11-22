@@ -29,7 +29,6 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
     public function countItems()
     {
         try {
-            // $sql = "SELECT COUNT(*) as COUNT FROM tb_categoria_funcionario;";
             $sql = "SELECT COUNT(*) as COUNT FROM $this->table;";
             $stmt = $this->link->prepare($sql);
             $stmt->execute();
