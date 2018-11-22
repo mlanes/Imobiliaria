@@ -1,4 +1,9 @@
-<p><b>Código</b><?= $categoriaFuncionario->cd_categoria ?></p>
-<p><b>Status</b><?= $categoriaFuncionario->ic_status ?></p>
-<p><b>Nome</b><?= $categoriaFuncionario->nm_categoria ?></p>
-<p><b>Sigla</b><?= $categoriaFuncionario->nm_sigla ?></p>
+<b>Código</b>
+<p><?= $categoriaFuncionario->cd_categoria ?></p>
+<b>Status</b>
+<p><?= $categoriaFuncionario->ic_status ?></p>
+<b>Nome</b>
+<p><?= $categoriaFuncionario->nm_categoria ?></p>
+<b>Sigla</b>
+<p><?= $categoriaFuncionario->nm_sigla ?></p>
+<a href="<?= HOME_URL . $this->controller ?>">Voltar</a>

@@ -8,3 +8,4 @@
     <input name="nm_sigla" value="<?= $nm_sigla ?>"><br>
     <button>Salvar</button>
 </form>
+<a href="<?= HOME_URL . $this->controller ?>">Voltar</a>
