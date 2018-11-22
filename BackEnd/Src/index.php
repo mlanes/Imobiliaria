@@ -10,7 +10,7 @@ if (DISPLAY_ERRORS == true) {
     error_reporting( E_ALL | E_STRICT );
 }
 
-date_default_timezone_set(DATE_TIMEZONEa);
+date_default_timezone_set(DATE_TIMEZONE);
 
 require_once ("Core/Mvc.php");
 
