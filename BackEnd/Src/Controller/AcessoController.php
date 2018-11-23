@@ -47,9 +47,31 @@ class AcessoController extends Controller
 
     public function disable(array $param)
     {
+        $cd_acesso = $param[0];
+        if ($cd_acesso != "") {
+            $this->Acesso->cd_acesso = $cd_acesso;
+            $this->Acesso->disable();
+            $this->redirectUrl();
+            exit;
+        } else {
+            echo 'É necessário um código';
+            $this->redirectUrl();
+            exit;
+        }
     }
 
     public function enable(array $param)
     {
+        $cd_acesso = $param[0];
+        if ($cd_acesso != "") {
+            $this->Acesso->cd_acesso = $cd_acesso;
+            $this->Acesso->enable();
+            $this->redirectUrl();
+            exit;
+        } else {
+            echo 'É necessário um código';
+            $this->redirectUrl();
+            exit;
+        }
     }
 }
