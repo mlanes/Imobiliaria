@@ -81,9 +81,9 @@ class CategoriaFuncionarioController extends Controller
 
     public function view(array $param)
     {
-        $param1 = $param[0];
-        if ($param1 != "") {
-            $this->CategoriaFuncionario->cd_categoria = $param1;
+        $cd_categoria = $param[0];
+        if ($cd_categoria != "") {
+            $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
             $categoriaFuncionario = $this->CategoriaFuncionario->select();
         } else {
             echo 'É necessário um código';
@@ -96,10 +96,10 @@ class CategoriaFuncionarioController extends Controller
 
     public function disable(array $param)
     {
-        $param1 = $param[0];
-        if ($param1 != "") {
-            $this->CategoriaFuncionario->cd_categoria = $param1;
-            $categoriasFuncionario = $this->CategoriaFuncionario->disable();
+        $cd_categoria = $param[0];
+        if ($cd_categoria != "") {
+            $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+            $this->CategoriaFuncionario->disable();
             $this->redirectUrl();
             exit;
         } else {
@@ -111,10 +111,10 @@ class CategoriaFuncionarioController extends Controller
 
     public function enable(array $param)
     {
-        $param1 = $param[0];
-        if ($param1 != "") {
-            $this->CategoriaFuncionario->cd_categoria = $param1;
-            $categoriasFuncionario = $this->CategoriaFuncionario->enable();
+        $cd_categoria = $param[0];
+        if ($cd_categoria != "") {
+            $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+            $this->CategoriaFuncionario->enable();
             $this->redirectUrl();
             exit;
         } else {
