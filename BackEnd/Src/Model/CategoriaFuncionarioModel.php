@@ -93,7 +93,7 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":cd_categoria", $this->cd_categoria);
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS);
+            $result = $stmt->fetch(PDO::FETCH_OBJ);
             return $result;
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';

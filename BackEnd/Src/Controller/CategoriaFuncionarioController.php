@@ -84,7 +84,7 @@ class CategoriaFuncionarioController extends Controller
         $param1 = $param[0];
         if ($param1 != "") {
             $this->CategoriaFuncionario->cd_categoria = $param1;
-            $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
+            $categoriaFuncionario = $this->CategoriaFuncionario->select();
         } else {
             echo 'É necessário um código';
             $this->redirectUrl();
