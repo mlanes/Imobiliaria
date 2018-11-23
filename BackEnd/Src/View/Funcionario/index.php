@@ -12,6 +12,9 @@
             <td>Nome</td>
             <td>Categoria</td>
             <td>CPF</td>
+            <td>Data de Nascimento</td>
+            <td>Criado em</td>
+            <td>Editado em</td>
             <td>Ações</td>
         </tr>
     </thead>
@@ -27,6 +30,9 @@
                 <td><?= $funcionario->nm_primeiro ?></td>
                 <td><?= $nm_categoria ?></td>
                 <td><?= $funcionario->cd_cpf ?></td>
+                <td><?= $funcionario->dt_nascimento ?></td>
+                <td><?= $funcionario->dt_criado ?></td>
+                <td><?= $funcionario->dt_editado ?></td>
                 <td><a href="<?= HOME_URL . $this->controller . '/View/' . $funcionario->cd_funcionario ?>">Ver</a></td>
                 <td><a href="<?= HOME_URL . $this->controller . '/Edit/' . $funcionario->cd_funcionario ?>">Editar</a></td>
                 <?php

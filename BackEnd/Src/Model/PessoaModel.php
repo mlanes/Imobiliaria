@@ -8,6 +8,7 @@ class PessoaModel extends Model implements CrudInterface
     private $nm_primeiro;
     private $nm_meio;
     private $nm_ultimo;
+    private $dt_nascimento;
     private $dt_criado;
     private $dt_editado;
     private $cd_cpf;
@@ -49,11 +50,12 @@ class PessoaModel extends Model implements CrudInterface
     public function insert()
     {
         try {
-            $sql = "INSERT INTO $this->table (nm_primeiro, nm_meio, nm_ultimo, dt_criado, dt_editado, cd_cpf) VALUES (:nm_primeiro, :nm_meio, :nm_ultimo, :dt_criado, :dt_editado, :cd_cpf);";
+            $sql = "INSERT INTO $this->table (nm_primeiro, nm_meio, nm_ultimo, dt_nascimento, dt_criado, dt_editado, cd_cpf) VALUES (:nm_primeiro, :nm_meio, :nm_ultimo, :dt_nascimento, :dt_criado, :dt_editado, :cd_cpf);";
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":nm_primeiro", $this->nm_primeiro);
             $stmt->bindValue(":nm_meio", $this->nm_meio);
             $stmt->bindValue(":nm_ultimo", $this->nm_ultimo);
+            $stmt->bindValue(":dt_nascimento", $this->dt_nascimento);
             $stmt->bindValue(":dt_criado", $this->dt_criado);
             $stmt->bindValue(":dt_editado", $this->dt_editado);
             $stmt->bindValue(":cd_cpf", $this->cd_cpf);
