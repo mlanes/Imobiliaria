@@ -44,6 +44,20 @@ CREATE TABLE tb_funcionario
             REFERENCES tb_pessoa(cd_pessoa)
 );
 
+CREATE TABLE tb_acesso
+(
+    cd_acesso INT NOT NULL AUTO_INCREMENT,
+    ic_status BOOLEAN NOT NULL,
+    nm_login VARCHAR(45) NOT NULL,
+    nm_password VARCHAR(255) NOT NULL,
+    cd_funcionario INT NOT NULL,
+    CONSTRAINT pk_acesso
+        PRIMARY KEY (cd_acesso),
+    CONSTRAINT fk_acesso_funcionario
+        FOREIGN KEY (cd_funcionario)
+            REFERENCES tb_funcionario(cd_funcionario)
+);
+
 -- Categorias dos Funcionarios
 INSERT INTO tb_categoria_funcionario (cd_categoria, ic_status, nm_categoria, nm_sigla) VALUES (1, 1, 'Administrador', 'ADM');
 
@@ -54,3 +68,6 @@ INSERT INTO tb_pessoa (cd_pessoa, nm_primeiro, nm_meio, nm_ultimo, dt_nascimento
 
 -- Funcionario
 INSERT INTO tb_funcionario (cd_funcionario, ic_status, cd_categoria, cd_creci, cd_pessoa) VALUES (1, 1, 1, 123456, 1);
+
+-- Acesso ao Sistema
+INSERT INTO tb_acesso (cd_acesso, ic_status, nm_login, nm_password, cd_funcionario) VALUES (1, 1, 'admin', 'admin', 1);
