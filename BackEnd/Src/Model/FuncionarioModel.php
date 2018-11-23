@@ -1,4 +1,5 @@
 <?php
+
 require_once 'Core/Model.php';
 require_once 'Interfaces/CrudInterface.php';
 
@@ -32,13 +33,8 @@ class FuncionarioModel extends Model implements CrudInterface
             $sql = "SELECT COUNT(*) as COUNT FROM $this->table;";
             $stmt = $this->link->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS);
-            foreach ($result as $key => $value) {
-                foreach ($value as $k => $v) {
-                    $count = $v;
-                }
-            }
-            return $count;
+            $result = $stmt->fetch(PDO::FETCH_OBJ)->COUNT;
+            return $result;
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
         }
