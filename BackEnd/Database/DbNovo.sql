@@ -19,6 +19,7 @@ CREATE TABLE tb_pessoa
 	nm_primeiro VARCHAR(45) NOT NULL,
 	nm_meio VARCHAR(45) NOT NULL,
     nm_ultimo VARCHAR(45) NOT NULL,
+    dt_nascimento DATE NOT NULL,
     dt_criado DATETIME NOT NULL,
     dt_editado DATETIME NOT NULL,
 	cd_cpf INT(13),
@@ -49,7 +50,7 @@ INSERT INTO tb_categoria_funcionario (cd_categoria, ic_status, nm_categoria, nm_
 
 -- Insert de Teste
 -- Pessoa
-INSERT INTO tb_pessoa (cd_pessoa, nm_primeiro, nm_meio, nm_ultimo, dt_criado, dt_editado, cd_cpf) VALUES (1, 'Nome', 'do Meio', 'Final', '1000-10-10 00:00:01', '1000-10-10 00:00:01', 123);
+INSERT INTO tb_pessoa (cd_pessoa, nm_primeiro, nm_meio, nm_ultimo, dt_nascimento, dt_criado, dt_editado, cd_cpf) VALUES (1, 'Nome', 'do Meio', 'Final', '1000-10-10', '1000-10-10 00:00:01', '1000-10-10 00:00:01', 123);
 
 -- Funcionario
 INSERT INTO tb_funcionario (cd_funcionario, ic_status, cd_categoria, cd_creci, cd_pessoa) VALUES (1, 1, 1, 123456, 1);
