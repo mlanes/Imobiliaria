@@ -1,3 +1,6 @@
+<?php
+    require_once parent::loadView('Layout', 'menu_lateral_admin');
+?>
 <h1>Categoria do Funcionário</h1>
 <form method="post">
     <label>Nome</label><br>

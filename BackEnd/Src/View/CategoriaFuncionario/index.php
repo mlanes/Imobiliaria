@@ -1,3 +1,6 @@
+<?php
+    require_once parent::loadView('Layout', 'menu_lateral_admin');
+?>
 <h1>Categorias Funcionario</h1>
 <p>Total: <b><?= $count ?> itens.</b></p>
 <a href="<?= HOME_URL . $this->controller . '/Add/' ?>">Cadastrar</a>

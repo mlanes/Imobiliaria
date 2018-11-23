@@ -1,3 +1,6 @@
+<?php
+    require_once parent::loadView('Layout', 'menu_lateral_admin');
+?>
 <b>Código</b>
 <p><?= $categoriaFuncionario->cd_categoria ?></p>
 <b>Status</b>

@@ -1,3 +1,6 @@
+<?php
+    require_once parent::loadView('Layout', 'menu_lateral_admin');
+?>
 <h1>Funcionarios</h1>
 <p>Total: <b><?= $count ?> itens.</b></p>
 <a href="<?= HOME_URL . $this->controller . '/Add/' ?>">Cadastrar</a>
@@ -8,7 +11,7 @@
             <td>Status</td>
             <td>Nome</td>
             <td>Categoria</td>
-            <td>Creci</td>
+            <td>CPF</td>
             <td>Ações</td>
         </tr>
     </thead>
@@ -23,7 +26,7 @@
                 <td><?= $funcionario->ic_status ?></td>
                 <td><?= $funcionario->nm_primeiro ?></td>
                 <td><?= $nm_categoria ?></td>
-                <td><?= $funcionario->cd_creci ?></td>
+                <td><?= $funcionario->cd_cpf ?></td>
                 <td><a href="<?= HOME_URL . $this->controller . '/View/' . $funcionario->cd_funcionario ?>">Ver</a></td>
                 <td><a href="<?= HOME_URL . $this->controller . '/Edit/' . $funcionario->cd_funcionario ?>">Editar</a></td>
                 <?php
