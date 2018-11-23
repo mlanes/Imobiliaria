@@ -89,9 +89,9 @@ class FuncionarioModel extends Model implements CrudInterface
     public function select()
     {
         try {
-            $sql = "SELECT * FROM $this->table WHERE cd_pessoa = :cd_pessoa;";
+            $sql = "SELECT * FROM $this->table LEFT JOIN tb_pessoa ON $this->table.cd_pessoa = tb_pessoa.cd_pessoa WHERE cd_funcionario = :cd_funcionario;";
             $stmt = $this->link->prepare($sql);
-            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
+            $stmt->bindValue(":cd_funcionario", $this->cd_funcionario);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_OBJ);
             return $result;
@@ -102,10 +102,10 @@ class FuncionarioModel extends Model implements CrudInterface
     public function disable()
     {
         try {
-            $sql = "UPDATE $this->table SET ic_status = :ic_status WHERE cd_pessoa = :cd_pessoa;";
+            $sql = "UPDATE $this->table SET ic_status = :ic_status WHERE cd_funcionario = :cd_funcionario;";
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":ic_status", 0);
-            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
+            $stmt->bindValue(":cd_funcionario", $this->cd_funcionario);
             $stmt->execute();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
@@ -115,10 +115,10 @@ class FuncionarioModel extends Model implements CrudInterface
     public function enable()
     {
         try {
-            $sql = "UPDATE $this->table SET ic_status = :ic_status WHERE cd_pessoa = :cd_pessoa;";
+            $sql = "UPDATE $this->table SET ic_status = :ic_status WHERE cd_funcionario = :cd_funcionario;";
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":ic_status", 1);
-            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
+            $stmt->bindValue(":cd_funcionario", $this->cd_funcionario);
             $stmt->execute();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
