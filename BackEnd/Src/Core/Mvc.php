@@ -2,98 +2,86 @@
 
 class Mvc
 {
-
     private $controller;
     private $action;
     private $param;
     private $not_found = 'notfound';
     private static $debug = false;
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->getUrl();
 
         if (self::$debug == true) {
             $this->debugging();
         }
 
-        $a = "Controller/" . $this->controller . ".php";
-
-        if (file_exists($a)) {
-
-            require_once ($a);
+        $controllerDir = "Controller/" . $this->controller . ".php";
+        if (file_exists($controllerDir)) {
+            require_once($controllerDir);
 
             if (!class_exists($this->controller)) {
-
                 $this->notFound();
                 return;
-
             } else {
-
                 $this->controller = new $this->controller();
-                if (method_exists($this->controller, $this->action)) {
 
+                if (method_exists($this->controller, $this->action)) {
                     $this->controller->setView($this->action);
                     $this->controller->{$this->action}($this->param);
-
                 } else {
-
-                    echo '<p>Método não encontrado</p>';
-
+                    $this->notFound();
                 }
-
             }
-
-        }
-        else {
+        } else {
             $this->notFound();
         }
-
-
     }
 
-    public function notFound() {
-
+    public function notFound()
+    {
         require_once("Controller/DefaultController.php");
         $controller = new DefaultController();
         $controller->notfound('Default', $this->not_found);
-
     }
 
-    public function getUrl() {
+    public function getUrl()
+    {
+        if (isset($_GET["path"])) {
+            $p = explode("/", $_GET["path"]);
 
-        $p = explode("/", $_GET["path"]);
-        $countParams = count($p);
+            $countParams = count($p);
+            
+            $this->param = [];
 
-        // Teste
-        $this->param = [];
-
-        for ($i = 0; $i < $countParams; $i++) {
-            if ($i == 0) {
-                $this->controller = ucfirst($p[$i] . 'Controller');
-            } else if ($i == 1) {
-                $this->action = strtolower($p[$i]);
-            } else {
-                $this->param[] = $p[$i];
+            for ($i = 0; $i < $countParams; $i++) {
+                if ($i == 0) {
+                    $this->controller = ucfirst($p[$i] . 'Controller');
+                } elseif ($i == 1) {
+                    $this->action = strtolower($p[$i]);
+                } else {
+                    $this->param[] = $p[$i];
+                }
             }
+            if ($this->action == null) {
+                $this->action = 'index';
+            }
+            if ($this->param == null) {
+                $this->param[] = "";
+            }
+        } else {
+            $this->controller = 'DefaultController';
+            $this->action = 'dashboard';
+            $this->param = null;
         }
-        if ($this->action == null) {
-            $this->action = 'index';
-        }
-        if ($this->param == null) {
-            $this->param[] = "";
-        }
-
     }
 
-    public function debugging() {
-
+    public function debugging()
+    {
         echo '<p>Controller: ' . $this->controller . '</p>';
         echo '<p>Action: ' . $this->action . '</p>';
         echo '<p>Params: ';
         var_dump($this->param);
         echo '</p>';
-
     }
-
 }
