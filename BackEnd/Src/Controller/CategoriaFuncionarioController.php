@@ -65,7 +65,7 @@ class CategoriaFuncionarioController extends Controller
                 exit;
             } else {
                 $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
-                $categoriaFuncionario = $this->CategoriaFuncionario->select()[0];
+                $categoriaFuncionario = $this->CategoriaFuncionario->select();
                 $nm_categoria = $categoriaFuncionario->nm_categoria;
                 $ic_status = $categoriaFuncionario->ic_status;
                 $nm_sigla = $categoriaFuncionario->nm_sigla;
