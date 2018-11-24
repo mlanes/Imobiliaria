@@ -56,6 +56,7 @@ class PessoaModel extends Model implements CrudInterface
             $stmt->bindValue(":dt_editado", $this->dt_editado);
             $stmt->bindValue(":cd_cpf", $this->cd_cpf);
             $stmt->execute();
+            $this->lastId = $this->link->lastInsertId();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
         }

@@ -48,6 +48,7 @@ class CategoriaFuncionarioModel extends Model implements CrudInterface
             $stmt->bindValue(":ic_status", $this->ic_status);
             $stmt->bindValue(":nm_sigla", $this->nm_sigla);
             $stmt->execute();
+            $this->lastId = $this->link->lastInsertId();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
         }

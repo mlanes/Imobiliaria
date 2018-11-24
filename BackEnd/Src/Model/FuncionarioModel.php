@@ -49,6 +49,7 @@ class FuncionarioModel extends Model implements CrudInterface
             $stmt->bindValue(":cd_categoria", $this->cd_categoria);
             $stmt->bindValue(":cd_creci", $this->cd_creci);
             $stmt->execute();
+            $this->lastId = $this->link->lastInsertId();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
         }
