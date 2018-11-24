@@ -41,7 +41,7 @@ class FuncionarioController extends Controller
         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
         $categorias = $this->CategoriaFuncionario->list();
 
-        if ($nm_primeiro != null && $nm_meio != null && $nm_ultimo != null && $dt_nascimento != null 
+        if ($nm_primeiro != null && $nm_meio != null && $nm_ultimo != null && $dt_nascimento != null
             && $cd_cpf != null && $ic_status != null && $cd_categoria != null) {
             $this->Pessoa = parent::loadModel("Pessoa");
             $this->Pessoa->nm_primeiro = $nm_primeiro;
@@ -52,14 +52,14 @@ class FuncionarioController extends Controller
             $this->Pessoa->dt_editado = date("Y-m-d H:i:s");
             $this->Pessoa->cd_cpf = $cd_cpf;
             $this->Pessoa->insert();
-            $cd_pessoa = $this->Pessoa->last_id;
+
+            $cd_pessoa = $this->Pessoa->lastId;
 
             $this->Funcionario->ic_status = $ic_status;
             $this->Funcionario->cd_categoria = $cd_categoria;
             $this->Funcionario->cd_creci = $cd_creci;
             $this->Funcionario->cd_pessoa = $cd_pessoa;
-
-            $this->CategoriaFuncionario->insert();
+            $this->Funcionario->insert();
             $this->redirectUrl($this->controller);
             exit;
         } else {

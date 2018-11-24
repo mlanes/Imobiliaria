@@ -19,7 +19,7 @@
     <select name="cd_categoria">
         <?php
             foreach ($categorias as $categoria) {
-                $op = '<option value="$categoria->cd_categoria"';
+                $op = '<option value=' . $categoria->cd_categoria;
                 if ($cd_categoria == $categoria->cd_categoria) {
                     $op .= 'selected>';
                 }

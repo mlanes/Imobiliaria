@@ -43,11 +43,13 @@ class FuncionarioModel extends Model implements CrudInterface
     public function insert()
     {
         try {
-            $sql = "INSERT INTO $this->table (ic_status, cd_categoria, cd_creci) VALUES (:ic_status, :cd_categoria, :cd_creci);";
+            $sql = "INSERT INTO $this->table (ic_status, cd_categoria, cd_creci, cd_pessoa) VALUES (:ic_status, :cd_categoria, :cd_creci, :cd_pessoa);";
+            // var_dump($sql);
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":ic_status", $this->ic_status);
             $stmt->bindValue(":cd_categoria", $this->cd_categoria);
             $stmt->bindValue(":cd_creci", $this->cd_creci);
+            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
             $stmt->execute();
             $this->lastId = $this->link->lastInsertId();
         } catch (Exception $e) {
