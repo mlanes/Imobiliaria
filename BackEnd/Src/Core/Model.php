@@ -4,7 +4,7 @@ require_once 'Core/Database.php';
 
 class Model extends Database
 {
-    private $table;
+    protected $table;
     protected $lastId;
 
     public function __construct()
