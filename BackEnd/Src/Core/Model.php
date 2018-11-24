@@ -6,7 +6,7 @@ class Model extends Database
 {
 
     private $table;
-    protected $last_id;
+    protected $lastId;
 
     public function __construct()
     {
