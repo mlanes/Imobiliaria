@@ -26,6 +26,9 @@ $("#menu-toggle").click(function(e) {
        }
     );
  }
+ $(document).ready( function () {
+   $('#tableImovel').DataTable();
+} );
  $(document).ready(function() {
     initMenu();
  });

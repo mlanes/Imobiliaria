@@ -141,7 +141,84 @@ h2{
  .no-margin {
     margin: 0;
  }
- 
+ .text-right{
+   float: right;
+   font-size: 25px;
+   margin-right: 5px;
+ }
+  /*           INPUTS          */
+select{
+   padding: 10px;
+   float: right;
+   margin-right: 5px;
+
+}
+
+ /*           TABLES          */
+  
+.table-header{
+   background-color: rgb(27, 27, 27);
+   color: #cdd0d3;   
+}
+
+
+ /*           BUTTONS          */
+.btn-commom{
+   float: right;
+   padding: 15px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border-radius: 0;
+   background-color: rgb(27, 27, 27);
+   color: #fff;
+   transition: background-color 0.5s;
+   margin-right: 5px;
+}
+.btn-commom:hover{
+   background-color: #535353;
+ }
+ .btn-confirm{
+   float: right;
+   margin-top: 10px;
+   padding: 20px;
+   border-radius: 0;
+   background-color: #39ad52;
+   color: #fff;
+   transition: background-color 0.5s;
+   margin-right: 5px;
+ }
+ .btn-confirm:hover{
+   background-color: #258341;
+ }
+
+ .btn-cancel{
+   float: right;
+   margin-top: 10px;
+   padding: 20px;
+   border-radius: 0;
+   background-color: #ad3c3c;
+   color: #fff;
+   transition: background-color 0.5s;
+   margin-right: 5px;
+ }
+ .btn-cancel:hover{
+   background-color: #832525;
+ }
+
+ .btn-change{
+   float: right;
+   margin-top: 10px;
+   padding: 20px;
+   border-radius: 0;
+   background-color: #b1bd43;
+   color: #fff;
+   transition: background-color 0.5s;
+   margin-right: 5px;
+ }
+ .btn-change:hover{
+   background-color: #837525;
+ }
+
  @media (min-width: 768px) {
     #wrapper {
        padding-left: 250px;
