@@ -65,12 +65,16 @@ class PessoaModel extends Model implements CrudInterface
     public function update()
     {
         try {
-            $sql = "UPDATE $this->table SET nm_categoria = :nm_categoria, ic_status = :ic_status, nm_sigla = :nm_sigla WHERE cd_categoria = :cd_categoria;";
+            $sql = "UPDATE $this->table SET nm_primeiro = :nm_primeiro, nm_meio = :nm_meio, nm_ultimo = :nm_ultimo, dt_nascimento = :dt_nascimento, dt_criado = :dt_criado, dt_editado = :dt_editado, cd_cpf = :cd_cpf WHERE cd_pessoa = :cd_pessoa;";
             $stmt = $this->link->prepare($sql);
-            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
-            $stmt->bindValue(":nm_categoria", $this->nm_categoria);
-            $stmt->bindValue(":ic_status", $this->ic_status);
-            $stmt->bindValue(":nm_sigla", $this->nm_sigla);
+            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
+            $stmt->bindValue(":nm_primeiro", $this->nm_primeiro);
+            $stmt->bindValue(":nm_meio", $this->nm_meio);
+            $stmt->bindValue(":nm_ultimo", $this->nm_ultimo);
+            $stmt->bindValue(":dt_nascimento", $this->dt_nascimento);
+            $stmt->bindValue(":dt_criado", $this->dt_criado);
+            $stmt->bindValue(":dt_editado", $this->dt_editado);
+            $stmt->bindValue(":cd_cpf", $this->cd_cpf);
             $stmt->execute();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';

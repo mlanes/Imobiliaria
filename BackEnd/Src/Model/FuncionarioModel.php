@@ -44,7 +44,6 @@ class FuncionarioModel extends Model implements CrudInterface
     {
         try {
             $sql = "INSERT INTO $this->table (ic_status, cd_categoria, cd_creci, cd_pessoa) VALUES (:ic_status, :cd_categoria, :cd_creci, :cd_pessoa);";
-            // var_dump($sql);
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":ic_status", $this->ic_status);
             $stmt->bindValue(":cd_categoria", $this->cd_categoria);
@@ -60,12 +59,13 @@ class FuncionarioModel extends Model implements CrudInterface
     public function update()
     {
         try {
-            $sql = "UPDATE $this->table SET nm_categoria = :nm_categoria, ic_status = :ic_status, nm_sigla = :nm_sigla WHERE cd_categoria = :cd_categoria;";
+            $sql = "UPDATE $this->table SET ic_status = :ic_status, cd_categoria = :cd_categoria, cd_creci = :cd_creci, cd_pessoa = :cd_pessoa WHERE cd_funcionario = :cd_funcionario;";
             $stmt = $this->link->prepare($sql);
-            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
-            $stmt->bindValue(":nm_categoria", $this->nm_categoria);
+            $stmt->bindValue(":cd_funcionario", $this->cd_funcionario);
             $stmt->bindValue(":ic_status", $this->ic_status);
-            $stmt->bindValue(":nm_sigla", $this->nm_sigla);
+            $stmt->bindValue(":cd_categoria", $this->cd_categoria);
+            $stmt->bindValue(":cd_creci", $this->cd_creci);
+            $stmt->bindValue(":cd_pessoa", $this->cd_pessoa);
             $stmt->execute();
         } catch (Exception $e) {
             echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
