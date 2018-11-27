@@ -13,6 +13,6 @@ if (DISPLAY_ERRORS == true) {
 
 date_default_timezone_set(DATE_TIMEZONE);
 
-require_once ("Core/Mvc.php");
+use Core\Mvc;
 
 $mvc = new Mvc();
