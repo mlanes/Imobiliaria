@@ -4,6 +4,7 @@
 // var_dump($_SERVER["HTTP_REFERER"]);
 
 require_once "../Config/App.php";
+require_once "autoload.php";
 
 if (DISPLAY_ERRORS == true) {
     ini_set( 'display_errors', TRUE );
