@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Core/Controller.php';
+// require_once 'Core/Controller.php';
+
+use Core\Controller;
 
 class AcessoController extends Controller
 {
@@ -42,6 +44,7 @@ class AcessoController extends Controller
                 $this->redirectUrl();
             } else {
                 echo 'Usuário ou senha inválidos.';
+                require_once parent::loadView($this->controller, $this->view);
             }
             exit;
         } else {

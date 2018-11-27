@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Core/Controller.php';
+use Core\Controller;
 
 class CategoriaFuncionarioController extends Controller
 {
