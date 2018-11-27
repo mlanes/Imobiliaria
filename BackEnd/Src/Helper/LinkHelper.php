@@ -1,6 +1,6 @@
 <?php
 
-require_once "Core/Helper.php";
+use Core\Helper;
 
 class LinkHelper extends Helper
 {
