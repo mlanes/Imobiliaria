@@ -11,6 +11,7 @@ class AcessoController extends Controller
     {
         parent::__construct();
         $this->Acesso = parent::loadModel("Acesso");
+        session_start();
     }
 
     public function index($param)
@@ -27,10 +28,32 @@ class AcessoController extends Controller
 
     public function login()
     {
+        $login = isset($_POST['login']) ? trim($_POST['login']) : null;
+        $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+        if ($login != null && $password != null) {
+            echo $this->Acesso->nm_login = $login;
+            echo $this->Acesso->nm_password = $password;
+            if ($this->Acesso->login()) {
+                $_SESSION['login'] = $login;
+                $this->redirectUrl();
+            } else {
+                echo 'Usuário ou senha inválidos.';
+            }
+            exit;
+        } else {
+            if (empty($_SESSION)) {
+                require_once parent::loadView($this->controller, $this->view);
+            } else {
+                $this->redirectUrl(' ');
+            }
+        }
     }
     
     public function logout()
     {
+        $this->Acesso->logout();
+        $this->redirectUrl($this->controller . '/login');
     }
 
     public function add()
