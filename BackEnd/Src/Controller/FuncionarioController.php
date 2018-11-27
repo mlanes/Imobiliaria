@@ -11,6 +11,7 @@ class FuncionarioController extends Controller
     {
         parent::__construct();
         $this->Funcionario = parent::loadModel("Funcionario");
+        session_start();
     }
 
     public function index($param)
