@@ -35,8 +35,8 @@ class AcessoController extends Controller
         $password = isset($_POST['password']) ? trim($_POST['password']) : null;
 
         if ($login != null && $password != null) {
-            echo $this->Acesso->nm_login = $login;
-            echo $this->Acesso->nm_password = $password;
+            $this->Acesso->nm_login = $login;
+            $this->Acesso->nm_password = $password;
             if ($this->Acesso->login()) {
                 $_SESSION['login'] = $login;
                 $this->redirectUrl();

@@ -105,7 +105,6 @@ class AcessoModel extends Model implements CrudInterface
     {
         try {
             $sql = "SELECT nm_login FROM $this->table WHERE ic_status = :ic_status AND nm_login = :nm_login AND nm_password = :nm_password LIMIT 1;";
-            var_dump($sql);
             $stmt = $this->link->prepare($sql);
             $stmt->bindValue(":ic_status", 1);
             $stmt->bindValue(":nm_login", $this->nm_login);
