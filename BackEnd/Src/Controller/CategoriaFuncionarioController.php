@@ -17,6 +17,8 @@ class CategoriaFuncionarioController extends Controller
     {
         $categoriasFuncionario = $this->CategoriaFuncionario->list();
         $count = $this->CategoriaFuncionario->countItems();
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
         require_once parent::loadView($this->controller, $this->view);
     }
 
