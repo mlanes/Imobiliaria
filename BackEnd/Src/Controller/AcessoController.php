@@ -18,6 +18,9 @@ class AcessoController extends Controller
     {
         $acessos = $this->Acesso->list();
         $count = $this->Acesso->countItems();
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
         require_once parent::loadView($this->controller, $this->view);
     }
 
