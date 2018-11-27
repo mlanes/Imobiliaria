@@ -13,9 +13,25 @@
             <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Perfil</a>
             </li> -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sair</a>
-            </li>
+            <?php
+                if (!empty($_SESSION['login'])) {
+                    ?>
+                    <li class="nav-item">
+                        <?= $linkHelper->link(
+                            'Sair',
+                            [
+                                'Controller' => 'Acesso',
+                                'Action' => 'Logout',
+                            ],
+                            [
+                                'title' => 'Encerrar sessão',
+                                'class' => 'nav-link'
+                            ]
+                        ) ?>
+                    </li>
+                    <?php
+                }
+            ?>
         </ul>
     </div>
 </nav>
