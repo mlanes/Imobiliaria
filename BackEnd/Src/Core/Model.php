@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Core/Database.php';
+namespace Core;
+
+use Core\Database;
 
 abstract class Model extends Database
 {

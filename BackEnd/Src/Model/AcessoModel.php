@@ -1,9 +1,8 @@
 <?php
 
-require_once 'Core/Model.php';
-require_once 'Interfaces/CrudInterface.php';
+use Core\Model;
 
-class AcessoModel extends Model implements CrudInterface
+class AcessoModel extends Model
 {
     private $cd_acesso;
     private $ic_status;
