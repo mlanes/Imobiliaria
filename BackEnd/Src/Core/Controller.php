@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+abstract class Controller
 {
     protected $reffer;
 
@@ -34,5 +34,12 @@ class Controller
     {
         $file = "View/" . ucfirst($folderName) . "/" . $viewName . '.php';
         return $file;
+    }
+
+    public function loadHelper(String $helperName)
+    {
+        $helperName .= 'Helper';
+        require_once "Helper/" . $helperName . ".php";
+        return new $helperName();
     }
 }

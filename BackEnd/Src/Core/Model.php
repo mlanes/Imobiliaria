@@ -2,7 +2,7 @@
 
 require_once 'Core/Database.php';
 
-class Model extends Database
+abstract class Model extends Database
 {
     protected $table;
     protected $lastId;
