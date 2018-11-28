@@ -8,9 +8,7 @@ abstract class Validate
 
     public function required($fields)
     {
-        if (!is_array($fields)) {
-            throw new Exception('Os campos precisam ser um array');
-        }
+        $this->fieldsIsArray($fields);
         if (empty($fields)) {
             foreach ($fields as $key => $value) {
                 $this->isEmpty($key);
@@ -21,10 +19,16 @@ abstract class Validate
             $this->isEmpty($field);
         }
     }
+    private function fieldsIsArray($fields)
+    {
+        if (!is_array($fields)) {
+            throw new Exception('Os campos precisam ser um array.');
+        }
+    }
     private function isEmpty($field)
     {
         if (empty($_POST[$field])) {
-            $this->errors[$field] = 'Esse campo é obrigatório.';
+            $this->errors[$field][] = 'Esse campo é obrigatório.';
         }
     }
     public function hasErrors()
@@ -34,5 +38,14 @@ abstract class Validate
     public function getErrors()
     {
         return $this->errors;
+    }
+    public function max($fields)
+    {
+        $this->fieldsIsArray($fields);
+        foreach ($fields as $key => $length) {
+            if (strlen($_POST[$key]) > $length) {
+                $this->errors[$key][] = "O campo deve ter no máximo {$length} caracteres.";
+            }
+        }
     }
 }
