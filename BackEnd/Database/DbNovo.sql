@@ -58,8 +58,50 @@ CREATE TABLE tb_acesso
             REFERENCES tb_funcionario(cd_funcionario)
 );
 
+CREATE TABLE tb_proprietario
+(
+    cd_proprietario INT NOT NULL AUTO_INCREMENT,
+    cd_pessoa INT NOT NULL,
+    CONSTRAINT pk_proprietario
+        PRIMARY KEY (cd_proprietario),
+    CONSTRAINT fk_pessoa_proprietario
+        FOREIGN KEY (cd_pessoa)
+            REFERENCES tb_proprietario(cd_pessoa)
+);
+
+CREATE TABLE tb_categoria_imovel
+(
+    cd_categoria_imovel INT NOT NULL AUTO_INCREMENT;
+    nm_categoria_imovel VARCHAR(45) NOT NULL,
+    CONSTRAINT pk_categoria_imovel
+        PRIMARY KEY (cd_categoria_imovel)
+);
+
+CREATE TABLE tb_imovel
+(
+    cd_imovel INT NOT NULL AUTO_INCREMENT,
+    qt_area_util DECIMAL(10, 2),
+    qt_area_total DECIMAL(10, 2),
+    vl_preco VARCHAR(30),
+    ic_vendido BOOLEAN,
+    cd_categoria_imovel INT NOT NULL,
+    cd_proprietario INT NOT NULL,
+    CONSTRAINT pk_imovel
+        PRIMARY KEY (cd_imovel),
+    CONSTRAINT fk_categoria_imovel
+        FOREIGN KEY (cd_categoria_imovel)
+            REFERENCES tb_categoria_imovel(cd_categoria_imovel),
+    CONSTRAINT fk_proprietario_imovel
+        FOREIGN KEY (cd_proprietario)
+            REFERENCES tb_proprietario(cd_proprietario)
+);
+
 -- Categorias dos Funcionarios
 INSERT INTO tb_categoria_funcionario (cd_categoria, ic_status, nm_categoria, nm_sigla) VALUES (1, 1, 'Administrador', 'ADM');
+
+-- Categorias de Imóvel
+INSERT INTO tb_categoria_imovel (cd_categoria_imovel, nm_categoria_imovel) VALUES (1, 'Casa'), (2, 'Apartamento');
+
 
 
 -- Insert de Teste
