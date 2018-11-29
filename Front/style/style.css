@@ -1,3 +1,8 @@
+.mapaDiv{
+   margin: auto;
+   height: 800px;
+   width: 800px;
+}
 .bg-login{
    position: absolute;
     width: 100%;
@@ -376,7 +381,7 @@ label {
 
 /* bootstrap select styles */
 .bootstrap-select {
-    .btn {
+    .btn{
         min-height: 40px;
         border-width: 2px;
         -webkit-box-shadow: none;
