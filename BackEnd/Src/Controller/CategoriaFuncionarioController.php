@@ -33,42 +33,20 @@ class CategoriaFuncionarioController extends Controller
 
     public function add()
     {
-        // $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : '';
-        // $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : '';
-        // $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : '';
-
         $catValidate = new Add();
         $catValidate->validate();
 
-        $sanitized = new Sanitize;
+        $sanitized = new Sanitize();
         $data = $sanitized->sanitized();
-
+        
         if (!$catValidate->hasErrors()) {
-            $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
-            $this->CategoriaFuncionario->ic_status = $ic_status;
-            $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
+            $this->CategoriaFuncionario->nm_categoria = $data->nm_categoria;
+            $this->CategoriaFuncionario->setIcStatus($data->ic_status);
+            $this->CategoriaFuncionario->nm_sigla = $data->nm_sigla;
             $this->CategoriaFuncionario->insert();
             $this->redirectUrl($this->controller);
-            // exit;
         }
-        else {
-            $nm_categoria = '';
-            $ic_status = '';
-            $nm_sigla = '';
-        }
-        var_dump($data);
-        // $nm_categoria = $data->nm_categoria;
-        // $ic_status = $data->ic_status;
-        // $nm_sigla = $data->nm_sigla;
 
-        // var_dump($catValidate->getErrors());
-        // if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
-            
-        // } else {
-            // echo 'Preencha todos os campos';
-            // $this->redirectUrl();
-            // exit;
-        // }
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");

@@ -29,14 +29,14 @@
                                     <?php
                                         echo $formHelper->radio('ic_status', [
                                             [
-                                                'value' => 1,
+                                                'value' => 'enable',
                                                 'class' => 'abc',
                                                 'text' => 'Habilitado',
                                                 'block' => 'false',
                                                 'checked' => true
                                             ],
                                             [
-                                                'value' => 0,
+                                                'value' => 'disable',
                                                 'text' => 'Desabilitado',
                                                 'block' => 'false'
                                             ]

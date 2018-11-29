@@ -106,7 +106,7 @@ class FormHelper extends Helper
 
     private function setAttributes($options)
     {
-        $ignoreList = array('checked');
+        $ignoreList = array('checked', 'block', 'label');
         $attr = '';
         foreach ($options as $key => $value) {
             if (!$this->isArray($value)) {
