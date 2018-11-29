@@ -16,20 +16,40 @@
                         <div class="col-lg-12">
                             <h1>Cadastrar - Categoria do Funcionário</h1>
                             <form method="post">
-                                <label>Nome</label><br>
+                                <div class="form-group">
                                 <?php
                                     echo $formHelper->control('nm_categoria', ['label' => [
-                                        'text' => 'LabelName',
-                                        'class' => '',
-                                        'for' => ''
-                                    ], 'type' => 'date']);
+                                        'text' => 'Nome',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control']);
                                 ?>
-                                <label>Status</label><br>
-                                <input type="radio" name="ic_status" value="true" <?php if ($ic_status == 1) {echo 'checked';} ?>>Habilitado<br>
-                                <input type="radio" name="ic_status" value="false" <?php if ($ic_status == 0) {echo 'checked';} ?>>Desabilitado<br>
-                                <label>Sigla</label><br>
-                                <input name="nm_sigla" value="<?= $nm_sigla ?>"><br>
-                                <button>Salvar</button>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <?php
+                                        echo $formHelper->radio('ic_status', [
+                                            [
+                                                'value' => 1,
+                                                'class' => 'abc',
+                                                'text' => 'Habilitado',
+                                                'block' => 'false',
+                                                'checked' => true
+                                            ],
+                                            [
+                                                'value' => 0,
+                                                'text' => 'Desabilitado',
+                                                'block' => 'false'
+                                            ]
+                                        ]);
+                                    ?>
+                                </div>
+                                <?php
+                                    echo $formHelper->control('nm_sigla', ['label' => [
+                                        'text' => 'Sigla',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control']);
+                                ?>
+                                <button class="btn btn-md btn-primary">Salvar</button>
                             </form>
                         </div>
                     </div>
