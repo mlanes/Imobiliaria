@@ -17,7 +17,13 @@
                             <h1>Cadastrar - Categoria do Funcionário</h1>
                             <form method="post">
                                 <label>Nome</label><br>
-                                <input name="nm_categoria" value="<?= $nm_categoria ?>"><br>
+                                <?php
+                                    echo $formHelper->control('nm_categoria', ['label' => [
+                                        'text' => 'LabelName',
+                                        'class' => '',
+                                        'for' => ''
+                                    ], 'type' => 'date']);
+                                ?>
                                 <label>Status</label><br>
                                 <input type="radio" name="ic_status" value="true" <?php if ($ic_status == 1) {echo 'checked';} ?>>Habilitado<br>
                                 <input type="radio" name="ic_status" value="false" <?php if ($ic_status == 0) {echo 'checked';} ?>>Desabilitado<br>
