@@ -1,6 +1,8 @@
 <?php
 
 use Core\Controller;
+use Validate\CategoriaFuncionario\Add as Add;
+use Validate\Sanitize;
 
 class CategoriaFuncionarioController extends Controller
 {
@@ -31,23 +33,46 @@ class CategoriaFuncionarioController extends Controller
 
     public function add()
     {
-        $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
-        $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
-        $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
+        // $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : '';
+        // $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : '';
+        // $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : '';
 
-        if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
+        $catValidate = new Add();
+        $catValidate->validate();
+
+        $sanitized = new Sanitize;
+        $data = $sanitized->sanitized();
+
+        if (!$catValidate->hasErrors()) {
             $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
             $this->CategoriaFuncionario->ic_status = $ic_status;
             $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
             $this->CategoriaFuncionario->insert();
             $this->redirectUrl($this->controller);
-            exit;
-        } else {
+            // exit;
+        }
+        else {
+            $nm_categoria = '';
+            $ic_status = '';
+            $nm_sigla = '';
+        }
+        var_dump($data);
+        // $nm_categoria = $data->nm_categoria;
+        // $ic_status = $data->ic_status;
+        // $nm_sigla = $data->nm_sigla;
+
+        // var_dump($catValidate->getErrors());
+        // if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
+            
+        // } else {
             // echo 'Preencha todos os campos';
             // $this->redirectUrl();
             // exit;
-        }
-
+        // }
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
+        $formHelper = parent::loadHelper("Form");
         require_once parent::loadView($this->controller, $this->view);
     }
 
@@ -58,7 +83,7 @@ class CategoriaFuncionarioController extends Controller
             $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
             $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
             $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
-            
+
             if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
                 $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
                 $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
@@ -79,7 +104,9 @@ class CategoriaFuncionarioController extends Controller
             $this->redirectUrl();
             exit;
         }
-
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
         require_once parent::loadView($this->controller, $this->view);
     }
 
