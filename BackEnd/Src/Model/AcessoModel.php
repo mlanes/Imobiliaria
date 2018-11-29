@@ -1,9 +1,8 @@
 <?php
 
-require_once 'Core/Model.php';
-require_once 'Interfaces/CrudInterface.php';
+use Core\Model;
 
-class AcessoModel extends Model implements CrudInterface
+class AcessoModel extends Model
 {
     private $cd_acesso;
     private $ic_status;
@@ -103,5 +102,28 @@ class AcessoModel extends Model implements CrudInterface
 
     public function login()
     {
+        try {
+            $sql = "SELECT nm_login FROM $this->table WHERE ic_status = :ic_status AND nm_login = :nm_login AND nm_password = :nm_password LIMIT 1;";
+            $stmt = $this->link->prepare($sql);
+            $stmt->bindValue(":ic_status", 1);
+            $stmt->bindValue(":nm_login", $this->nm_login);
+            $stmt->bindValue(":nm_password", $this->nm_password);
+            $stmt->execute();
+            $result = $stmt->rowCount();
+            if ($result >= 1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo '<p>Erro: <b>' . $e->getMessage() . '</b></p>';
+        }
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
     }
 }

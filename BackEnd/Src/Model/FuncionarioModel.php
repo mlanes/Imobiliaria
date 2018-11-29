@@ -1,9 +1,8 @@
 <?php
 
-require_once 'Core/Model.php';
-require_once 'Interfaces/CrudInterface.php';
+use Core\Model;
 
-class FuncionarioModel extends Model implements CrudInterface
+class FuncionarioModel extends Model
 {
     private $cd_funcionario;
     private $ic_status;

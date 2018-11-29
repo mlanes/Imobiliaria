@@ -1,6 +1,10 @@
 <?php
 
-class Database
+namespace Core;
+
+use PDO;
+
+abstract class Database
 {
     private $db_host = HOSTNAME;
     private $db_name = DB_NAME;

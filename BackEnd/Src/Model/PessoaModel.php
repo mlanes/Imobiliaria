@@ -1,9 +1,8 @@
 <?php
 
-require_once 'Core/Model.php';
-require_once 'Interfaces/CrudInterface.php';
+use Core\Model;
 
-class PessoaModel extends Model implements CrudInterface
+class PessoaModel extends Model
 {
     private $cd_pessoa;
     private $nm_primeiro;

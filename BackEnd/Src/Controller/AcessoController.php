@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Core/Controller.php';
+// require_once 'Core/Controller.php';
+
+use Core\Controller;
 
 class AcessoController extends Controller
 {
@@ -11,12 +13,16 @@ class AcessoController extends Controller
     {
         parent::__construct();
         $this->Acesso = parent::loadModel("Acesso");
+        session_start();
     }
 
     public function index($param)
     {
         $acessos = $this->Acesso->list();
         $count = $this->Acesso->countItems();
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
         require_once parent::loadView($this->controller, $this->view);
     }
 
@@ -27,10 +33,33 @@ class AcessoController extends Controller
 
     public function login()
     {
+        $login = isset($_POST['login']) ? trim($_POST['login']) : null;
+        $password = isset($_POST['password']) ? trim($_POST['password']) : null;
+
+        if ($login != null && $password != null) {
+            $this->Acesso->nm_login = $login;
+            $this->Acesso->nm_password = $password;
+            if ($this->Acesso->login()) {
+                $_SESSION['login'] = $login;
+                $this->redirectUrl();
+            } else {
+                echo 'Usuário ou senha inválidos.';
+                require_once parent::loadView($this->controller, $this->view);
+            }
+            exit;
+        } else {
+            if (empty($_SESSION)) {
+                require_once parent::loadView($this->controller, $this->view);
+            } else {
+                $this->redirectUrl(' ');
+            }
+        }
     }
     
     public function logout()
     {
+        $this->Acesso->logout();
+        $this->redirectUrl($this->controller . '/login');
     }
 
     public function add()

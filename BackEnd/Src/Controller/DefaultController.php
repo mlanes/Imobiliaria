@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Core/Controller.php';
+use Core\Controller;
 
 class DefaultController extends Controller
 {
@@ -10,6 +10,7 @@ class DefaultController extends Controller
     public function __construct()
     {
         parent::__construct();
+        session_start();
     }
 
     public function setView($a)
@@ -19,7 +20,10 @@ class DefaultController extends Controller
 
     public function dashboard()
     {
-        echo "Dashboard";
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
+        require_once parent::loadView($this->controller, $this->view);
     }
 
     public function notfound($folderName, $fileName)

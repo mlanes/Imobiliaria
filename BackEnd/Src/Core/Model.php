@@ -1,8 +1,10 @@
 <?php
 
-require_once 'Core/Database.php';
+namespace Core;
 
-class Model extends Database
+use Core\Database;
+
+abstract class Model extends Database
 {
     protected $table;
     protected $lastId;

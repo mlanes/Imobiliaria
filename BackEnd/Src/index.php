@@ -4,6 +4,7 @@
 // var_dump($_SERVER["HTTP_REFERER"]);
 
 require_once "../Config/App.php";
+require_once "autoload.php";
 
 if (DISPLAY_ERRORS == true) {
     ini_set( 'display_errors', TRUE );
@@ -12,6 +13,6 @@ if (DISPLAY_ERRORS == true) {
 
 date_default_timezone_set(DATE_TIMEZONE);
 
-require_once ("Core/Mvc.php");
+use Core\Mvc;
 
 $mvc = new Mvc();

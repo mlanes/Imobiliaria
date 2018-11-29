@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Core/Controller.php';
+use Core\Controller;
 
 class FuncionarioController extends Controller
 {
@@ -11,6 +11,7 @@ class FuncionarioController extends Controller
     {
         parent::__construct();
         $this->Funcionario = parent::loadModel("Funcionario");
+        session_start();
     }
 
     public function index($param)
@@ -18,6 +19,9 @@ class FuncionarioController extends Controller
         $funcionarios = $this->Funcionario->list();
         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
         $count = $this->Funcionario->countItems();
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
         require_once parent::loadView($this->controller, $this->view);
     }
 
