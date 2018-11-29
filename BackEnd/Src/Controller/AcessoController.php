@@ -1,8 +1,7 @@
 <?php
 
-// require_once 'Core/Controller.php';
-
 use Core\Controller;
+use Validate\Acesso\Login as LoginValidate;
 
 class AcessoController extends Controller
 {
@@ -36,7 +35,10 @@ class AcessoController extends Controller
         $login = isset($_POST['login']) ? trim($_POST['login']) : null;
         $password = isset($_POST['password']) ? trim($_POST['password']) : null;
 
-        if ($login != null && $password != null) {
+        $loginValidate = new LoginValidate();
+        $loginValidate->validate();
+
+        if (!$loginValidate->hasErrors()) {
             $this->Acesso->nm_login = $login;
             $this->Acesso->nm_password = $password;
             if ($this->Acesso->login()) {
@@ -47,13 +49,13 @@ class AcessoController extends Controller
                 require_once parent::loadView($this->controller, $this->view);
             }
             exit;
-        } else {
-            if (empty($_SESSION)) {
-                require_once parent::loadView($this->controller, $this->view);
-            } else {
-                $this->redirectUrl(' ');
-            }
         }
+        if (empty($_SESSION)) {
+            require_once parent::loadView($this->controller, $this->view);
+        } else {
+            $this->redirectUrl(' ');
+        }
+        exit;
     }
     
     public function logout()
