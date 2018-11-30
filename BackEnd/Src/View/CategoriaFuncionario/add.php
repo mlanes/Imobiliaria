@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?= SYSTEM_LANG ?>">
     <head>
-        <?= $bootstrapHelper->css() ?>
-        <?= $styleHelper->css() ?>
+        <?php
+            require_once parent::loadView('Layout', 'head_admin');
+        ?>
     </head>
     <body>
         <?php
