@@ -18,11 +18,18 @@ class CategoriaFuncionarioController extends Controller
 
     public function index($param)
     {
+        // Pegando dados
         $categoriasFuncionario = $this->CategoriaFuncionario->list();
+        
+        // Pegando contagem de total de itens
         $count = $this->CategoriaFuncionario->countItems();
+
+        // Caregando Helpers
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
+
+        // Carregando View
         require_once parent::loadView($this->controller, $this->view);
     }
 
@@ -33,103 +40,155 @@ class CategoriaFuncionarioController extends Controller
 
     public function add()
     {
+        // Chamando Validação
         $catValidate = new Add();
         $catValidate->validate();
 
+        // Pegando Dados da requisição de forma dinâmica e automática
         $sanitized = new Sanitize();
         $data = $sanitized->sanitized();
         
+        // Verificando erro de Validação
         if (!$catValidate->hasErrors()) {
             $this->CategoriaFuncionario->nm_categoria = $data->nm_categoria;
             $this->CategoriaFuncionario->setIcStatus($data->ic_status);
             $this->CategoriaFuncionario->nm_sigla = $data->nm_sigla;
             $this->CategoriaFuncionario->insert();
+
+            // Redirecionando para a action index
             $this->redirectUrl($this->controller);
+            exit;
         }
 
+        // Caregando Helpers
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
         $formHelper = parent::loadHelper("Form");
+
+        // Carregando View
         require_once parent::loadView($this->controller, $this->view);
     }
 
     public function edit(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_categoria = $param[0];
-        if ($cd_categoria != "") {
-            $nm_categoria = isset($_POST['nm_categoria']) ? $_POST['nm_categoria'] : null;
-            $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
-            $nm_sigla = isset($_POST['nm_sigla']) ? $_POST['nm_sigla'] : null;
 
-            if ($nm_categoria != null && $ic_status != null && $nm_sigla != null) {
+        // Verificando se o código está preechido
+        if (!empty($cd_categoria)) {
+            // Chamando Validação
+            $catValidate = new Add();
+            $catValidate->validate();
+
+            // Pegando Dados da requisição de forma dinâmica e automática
+            $sanitized = new Sanitize();
+            $data = $sanitized->sanitized();
+
+            // Definindo Código
+            $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+
+            // Buscando Dados
+            $categoriaFuncionario = $this->CategoriaFuncionario->select();
+
+            // Formatando Status para formulário
+            if ($categoriaFuncionario->ic_status == 1) {
+                $ic_status = 'enable';
+            } else {
+                $ic_status = 'disable';
+            }
+
+            // Verificando erro de Validação
+            if (!$catValidate->hasErrors()) {
                 $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
-                $this->CategoriaFuncionario->nm_categoria = $nm_categoria;
-                $this->CategoriaFuncionario->ic_status = $ic_status;
-                $this->CategoriaFuncionario->nm_sigla = $nm_sigla;
+                $this->CategoriaFuncionario->nm_categoria = $data->nm_categoria;
+                $this->CategoriaFuncionario->setIcStatus($data->ic_status);
+                $this->CategoriaFuncionario->nm_sigla = $data->nm_sigla;
                 $this->CategoriaFuncionario->update();
+
+                // Redirecionando para a action index
                 $this->redirectUrl($this->controller);
                 exit;
-            } else {
-                $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
-                $categoriaFuncionario = $this->CategoriaFuncionario->select();
-                $nm_categoria = $categoriaFuncionario->nm_categoria;
-                $ic_status = $categoriaFuncionario->ic_status;
-                $nm_sigla = $categoriaFuncionario->nm_sigla;
             }
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
+
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
+            $formHelper = parent::loadHelper("Form");
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->view);
             exit;
         }
-        $bootstrapHelper = parent::loadHelper("Bootstrap");
-        $styleHelper = parent::loadHelper("Style");
-        $linkHelper = parent::loadHelper("Link");
-        require_once parent::loadView($this->controller, $this->view);
+
+        echo 'É necessário um código';
+        $this->redirectUrl();
+        exit;
     }
 
     public function view(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_categoria = $param[0];
-        if ($cd_categoria != "") {
+
+        // Verificando se o código está preechido
+        if (!empty($cd_categoria)) {
+            // Definindo Código
             $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+
+            // Buscando Dados
             $categoriaFuncionario = $this->CategoriaFuncionario->select();
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->view);
             exit;
         }
 
-        require_once parent::loadView($this->controller, $this->view);
+        echo 'É necessário um código';
+        $this->redirectUrl();
+        exit;
     }
 
     public function disable(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_categoria = $param[0];
-        if ($cd_categoria != "") {
+
+        // Verificando se o código está preechido
+        if (!empty($cd_categoria)) {
+            // Definindo Código
             $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+
+            // Desabilitando unidade
             $this->CategoriaFuncionario->disable();
             $this->redirectUrl();
             exit;
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
-            exit;
         }
+
+        echo 'É necessário um código';
+        $this->redirectUrl();
+        exit;
     }
 
     public function enable(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_categoria = $param[0];
-        if ($cd_categoria != "") {
+
+        // Verificando se o código está preechido
+        if (!empty($cd_categoria)) {
+            // Definindo Código
             $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
+
+            // Habilitando unidade
             $this->CategoriaFuncionario->enable();
             $this->redirectUrl();
             exit;
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
-            exit;
         }
+        
+        echo 'É necessário um código';
+        $this->redirectUrl();
+        exit;
     }
 }
