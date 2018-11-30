@@ -5,13 +5,12 @@ use Core\Controller;
 class FuncionarioController extends Controller
 {
     private $controller = 'Funcionario';
-    private $view;
 
     public function __construct()
     {
+        // Herdando Construct
         parent::__construct();
         $this->Funcionario = parent::loadModel("Funcionario");
-        session_start();
     }
 
     public function index($param)
@@ -22,12 +21,7 @@ class FuncionarioController extends Controller
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
-        require_once parent::loadView($this->controller, $this->view);
-    }
-
-    public function setView($a)
-    {
-        $this->view = $a;
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function add()
@@ -72,7 +66,7 @@ class FuncionarioController extends Controller
             // exit;
         }
 
-        require_once parent::loadView($this->controller, $this->view);
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function edit(array $param)
@@ -137,7 +131,7 @@ class FuncionarioController extends Controller
             exit;
         }
 
-        require_once parent::loadView($this->controller, $this->view);
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function view(array $param)
@@ -156,7 +150,7 @@ class FuncionarioController extends Controller
             exit;
         }
 
-        require_once parent::loadView($this->controller, $this->view);
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function disable(array $param)

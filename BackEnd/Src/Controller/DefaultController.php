@@ -5,17 +5,11 @@ use Core\Controller;
 class DefaultController extends Controller
 {
     private $controller = 'Default';
-    private $view;
 
     public function __construct()
     {
+        // Herdando Construct
         parent::__construct();
-        session_start();
-    }
-
-    public function setView($a)
-    {
-        $this->view = $a;
     }
 
     public function dashboard()
@@ -23,7 +17,7 @@ class DefaultController extends Controller
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
-        require_once parent::loadView($this->controller, $this->view);
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function notfound($folderName, $fileName)

@@ -7,13 +7,12 @@ use Validate\Sanitize;
 class CategoriaFuncionarioController extends Controller
 {
     private $controller = 'CategoriaFuncionario';
-    private $view;
 
     public function __construct()
     {
+        // Herdando Construct
         parent::__construct();
         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
-        session_start();
     }
 
     public function index($param)
@@ -30,12 +29,7 @@ class CategoriaFuncionarioController extends Controller
         $linkHelper = parent::loadHelper("Link");
 
         // Carregando View
-        require_once parent::loadView($this->controller, $this->view);
-    }
-
-    public function setView($a)
-    {
-        $this->view = $a;
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function add()
@@ -67,7 +61,7 @@ class CategoriaFuncionarioController extends Controller
         $formHelper = parent::loadHelper("Form");
 
         // Carregando View
-        require_once parent::loadView($this->controller, $this->view);
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function edit(array $param)
@@ -118,7 +112,7 @@ class CategoriaFuncionarioController extends Controller
             $formHelper = parent::loadHelper("Form");
 
             // Carregando View
-            require_once parent::loadView($this->controller, $this->view);
+            require_once parent::loadView($this->controller, $this->currentAction);
             exit;
         }
 
@@ -141,7 +135,7 @@ class CategoriaFuncionarioController extends Controller
             $categoriaFuncionario = $this->CategoriaFuncionario->select();
 
             // Carregando View
-            require_once parent::loadView($this->controller, $this->view);
+            require_once parent::loadView($this->controller, $this->currentAction);
             exit;
         }
 
@@ -186,7 +180,7 @@ class CategoriaFuncionarioController extends Controller
             $this->redirectUrl();
             exit;
         }
-        
+
         echo 'É necessário um código';
         $this->redirectUrl();
         exit;

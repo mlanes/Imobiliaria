@@ -6,13 +6,12 @@ use Validate\Acesso\Login as LoginValidate;
 class AcessoController extends Controller
 {
     private $controller = 'Acesso';
-    private $view;
 
     public function __construct()
     {
+        // Herdando Construct
         parent::__construct();
         $this->Acesso = parent::loadModel("Acesso");
-        session_start();
     }
 
     public function index($param)
@@ -22,12 +21,7 @@ class AcessoController extends Controller
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
-        require_once parent::loadView($this->controller, $this->view);
-    }
-
-    public function setView($a)
-    {
-        $this->view = $a;
+        require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function login()
@@ -46,12 +40,12 @@ class AcessoController extends Controller
                 $this->redirectUrl();
             } else {
                 echo 'Usuário ou senha inválidos.';
-                require_once parent::loadView($this->controller, $this->view);
+                require_once parent::loadView($this->controller, $this->currentAction);
             }
             exit;
         }
         if (empty($_SESSION)) {
-            require_once parent::loadView($this->controller, $this->view);
+            require_once parent::loadView($this->controller, $this->currentAction);
         } else {
             $this->redirectUrl(' ');
         }
