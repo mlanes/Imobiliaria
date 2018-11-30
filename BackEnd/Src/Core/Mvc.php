@@ -29,7 +29,7 @@ class Mvc
                 $this->controller = new $this->controller();
 
                 if (method_exists($this->controller, $this->action)) {
-                    $this->controller->setView($this->action);
+                    $this->controller->setAction($this->action);
                     $this->controller->{$this->action}($this->param);
                 } else {
                     $this->notFound();

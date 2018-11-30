@@ -5,9 +5,11 @@ namespace Core;
 abstract class Controller
 {
     protected $reffer;
+    protected $currentAction;
 
     public function __construct()
     {
+        session_start();
     }
 
     private function getReffer()
@@ -44,4 +46,10 @@ abstract class Controller
         require_once "Helper/" . $helperName . ".php";
         return new $helperName();
     }
+
+    public function setAction($a)
+    {
+        $this->currentAction = $a;
+    }
+
 }
