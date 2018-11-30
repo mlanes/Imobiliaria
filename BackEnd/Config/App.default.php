@@ -2,7 +2,6 @@
 
 // Url Base
 define('HOME_URL', '127.0.0.1/');
-define('SYSTEM_NAME', 'Sistema');
 
 // Database
 define('HOSTNAME', '');
@@ -16,4 +15,6 @@ define('DATE_TIMEZONE', 'America/Sao_Paulo');
 
 // Exibição
 define('SYSTEM_NAME', 'Imobiliária Litoral');
+define('SYSTEM_DESCRIPTION', 'Descrição');
+define('SYSTEM_LANG', 'pt-BR');
 define('DISPLAY_ERRORS', true);
