@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <?= $bootstrapHelper->css() ?>
         <?= $styleHelper->css() ?>
+        <title><?= $this->controller ?> - <?= $this->currentAction ?> | <?= SYSTEM_NAME ?></title>
     </head>
     <body>
         <?php
@@ -14,21 +18,22 @@
                 <div class="container-fluid xyz">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1>Categorias de Funcionário</h1>
-                            <?=
-                                $linkHelper->link(
-                                    'Cadastrar',
-                                    [
-                                        'Controller' => $this->controller,
-                                        'Action' => 'Add',
-                                    ],
-                                    [
-                                        'title' => 'Cadastrar Categoria de Funcionário',
-                                        'class' => 'btn btn-sm btn-success'
-                                    ]
-                                )
-                            ?>
-                            <hr/>
+                            <div class="mb-3">
+                                <h1>Categorias de Funcionário</h1>
+                                <?=
+                                    $linkHelper->link(
+                                        'Cadastrar',
+                                        [
+                                            'Controller' => $this->controller,
+                                            'Action' => 'Add',
+                                        ],
+                                        [
+                                            'title' => 'Cadastrar Categoria de Funcionário',
+                                            'class' => 'btn btn-sm btn-success'
+                                        ]
+                                    )
+                                ?>
+                            </div>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
