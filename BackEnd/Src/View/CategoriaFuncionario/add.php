@@ -16,39 +16,37 @@
                         <div class="col-lg-12">
                             <h1>Cadastrar - Categoria do Funcionário</h1>
                             <form method="post">
-                                <div class="form-group">
-                                <?php
-                                    echo $formHelper->control('nm_categoria', ['label' => [
+                                <?=
+                                    $formHelper->control('nm_categoria', ['label' => [
                                         'text' => 'Nome',
                                         'class' => 'font-weight-bold',
-                                    ], 'type' => 'text', 'class' => 'form-control']);
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true])
                                 ?>
-                                </div>
                                 <div class="form-group">
-                                    <label>Status</label>
-                                    <?php
-                                        echo $formHelper->radio('ic_status', [
+                                    <label>Status</label><br>
+                                    <?=
+                                        $formHelper->radio('ic_status', [
                                             [
                                                 'value' => 'enable',
-                                                'class' => 'abc',
                                                 'text' => 'Habilitado',
-                                                'block' => 'false',
+                                                'block' => false,
                                                 'checked' => true
                                             ],
                                             [
                                                 'value' => 'disable',
                                                 'text' => 'Desabilitado',
-                                                'block' => 'false'
+                                                'block' => false
                                             ]
-                                        ]);
+                                        ])
                                     ?>
                                 </div>
-                                <?php
-                                    echo $formHelper->control('nm_sigla', ['label' => [
+                                <?=
+                                    $formHelper->control('nm_sigla', ['label' => [
                                         'text' => 'Sigla',
                                         'class' => 'font-weight-bold',
-                                    ], 'type' => 'text', 'class' => 'form-control']);
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true])
                                 ?>
+                                <a href="<?= HOME_URL . $this->controller ?>" class="btn btn-md btn-secondary">Voltar</a>
                                 <button class="btn btn-md btn-primary">Salvar</button>
                             </form>
                         </div>
@@ -58,4 +56,3 @@
         </div>
     </body>
 </html>
-<a href="<?= HOME_URL . $this->controller ?>">Voltar</a>

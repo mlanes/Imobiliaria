@@ -28,8 +28,7 @@
                                     ]
                                 )
                             ?>
-                            <hr />
-                            <p>Total: <b><?= $count ?> itens.</b></p>
+                            <hr/>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -37,7 +36,7 @@
                                         <td>Status</td>
                                         <td>Nome</td>
                                         <td>Sigla</td>
-                                        <td colspan="3">Ações</td>
+                                        <td class="text-center" colspan="3">Ações</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -127,6 +126,7 @@
                                     ?>
                                 </tbody>
                             </table>
+                            <p class="text-right">Total: <b><?= $count ?> itens.</b></p>
                         </div>
                     </div>
                 </div>
