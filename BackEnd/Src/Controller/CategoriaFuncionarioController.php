@@ -15,7 +15,7 @@ class CategoriaFuncionarioController extends Controller
         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
     }
 
-    public function index($param)
+    public function index()
     {
         // Pegando dados
         $categoriasFuncionario = $this->CategoriaFuncionario->list();
@@ -133,6 +133,11 @@ class CategoriaFuncionarioController extends Controller
 
             // Buscando Dados
             $categoriaFuncionario = $this->CategoriaFuncionario->select();
+
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
 
             // Carregando View
             require_once parent::loadView($this->controller, $this->currentAction);
