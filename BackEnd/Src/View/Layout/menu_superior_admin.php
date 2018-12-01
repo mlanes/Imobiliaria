@@ -17,6 +17,9 @@
                 if (!empty($_SESSION['login'])) {
                     ?>
                     <li class="nav-item">
+                        <span href="#" class="nav-link text-white"><?= $_SESSION['login'] ?></span>
+                    </li>
+                    <li class="nav-item">
                         <?= $linkHelper->link(
                             'Sair',
                             [
