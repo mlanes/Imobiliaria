@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand mr-auto" href="<?= HOME_URL ?>"><?= SYSTEM_NAME ?></a>
 
