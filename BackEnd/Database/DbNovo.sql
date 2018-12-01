@@ -80,10 +80,14 @@ CREATE TABLE tb_categoria_imovel
 CREATE TABLE tb_imovel
 (
     cd_imovel INT NOT NULL AUTO_INCREMENT,
-    qt_area_util DECIMAL(10, 2),
-    qt_area_total DECIMAL(10, 2),
-    vl_preco VARCHAR(30),
-    ic_vendido BOOLEAN,
+    qt_area_util DECIMAL(10, 2) NOT NULL,
+    qt_area_total DECIMAL(10, 2) NOT NULL,
+    vl_preco VARCHAR(30) NOT NULL,
+    ic_vendido BOOLEAN NOT NULL,
+    ds_imovel VARCHAR(30) NOT NULL,
+    ds_imagem VARCHAR(30) DEFAULT "default.png",
+    cd_latitude VARCHAR(30),
+    cd_longitude VARCHAR(30),
     cd_categoria_imovel INT NOT NULL,
     cd_proprietario INT NOT NULL,
     CONSTRAINT pk_imovel
