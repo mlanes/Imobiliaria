@@ -79,15 +79,26 @@ class AcessoController extends Controller
             exit;
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
     
     public function logout()
     {
-        $this->Acesso->logout();
-        $this->redirectUrl($this->controller . '/login');
+        // Instanciando a classe
+        $auth = new Auth();
+        
+        // Verificando se o usuário está logado
+        if ($auth->verifyAuthenticated()) {
+            // Destruindo sessão e fazendo logout
+            $this->Acesso->logout();
+
+            // Redirecionando para o login
+            $this->redirectUrl($this->controller . '/login');
+        }
+        $this->redirectUrl();
+        exit;        
     }
 
     public function add()
@@ -99,7 +110,7 @@ class AcessoController extends Controller
         if (!$auth->verifyAuthenticated()) {
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
@@ -113,7 +124,7 @@ class AcessoController extends Controller
         if (!$auth->verifyAuthenticated()) {
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
@@ -127,7 +138,7 @@ class AcessoController extends Controller
         if (!$auth->verifyAuthenticated()) {
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
@@ -151,7 +162,7 @@ class AcessoController extends Controller
             exit;
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
@@ -175,7 +186,7 @@ class AcessoController extends Controller
             exit;
         }
 
-        // Redirecionando para o dashboard
+        // Redirecionando para o login
         $this->redirectUrl(' ');
         exit;
     }
