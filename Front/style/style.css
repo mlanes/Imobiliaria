@@ -42,6 +42,7 @@ h2{
  }
  
  #wrapper {
+    margin-top: 55px;
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -57,7 +58,7 @@ h2{
  
  #sidebar-wrapper {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     left: 250px;
     width: 0;
     height: 100%;
@@ -418,6 +419,7 @@ label { cursor: pointer; }
 
 /*CARDS*/
 .card{
+   display: inline-flex;
   border-radius: 0px;
 
 }
