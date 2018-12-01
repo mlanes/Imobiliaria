@@ -241,7 +241,6 @@ class CategoriaFuncionarioController extends Controller
                 exit;
             }
 
-            echo 'É necessário um código';
             $this->redirectUrl();
             exit;
         }
