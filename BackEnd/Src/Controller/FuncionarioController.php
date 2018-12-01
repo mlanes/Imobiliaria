@@ -167,64 +167,95 @@ class FuncionarioController extends Controller
                 $this->redirectUrl($this->controller);
                 exit;
             }
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
+            $formHelper = parent::loadHelper("Form");
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->currentAction);
+            exit;
         }
 
-        // Caregando Helpers
-        $bootstrapHelper = parent::loadHelper("Bootstrap");
-        $styleHelper = parent::loadHelper("Style");
-        $linkHelper = parent::loadHelper("Link");
-        $formHelper = parent::loadHelper("Form");
-
-        // Carregando View
-        require_once parent::loadView($this->controller, $this->currentAction);
+        $this->redirectUrl();
+        exit;
     }
 
     public function view(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_funcionario = $param[0];
+
+        // Verificando se o código está preechido
         if ($cd_funcionario != "") {
+            // Definindo Código
             $this->Funcionario->cd_funcionario = $cd_funcionario;
+
+            // Carregando Model
             $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
+
+            // Buscando Dados
             $funcionario = $this->Funcionario->select();
+
+            // Definindo Código
             $this->CategoriaFuncionario->cd_categoria = $funcionario->cd_categoria;
+
+            // Buscando Dados
             $categoria = $this->CategoriaFuncionario->select();
-            $nm_categoria = $categoria->nm_categoria;
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
+            $funcionario->nm_categoria = $categoria->nm_categoria;
+
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->currentAction);
             exit;
         }
 
-        require_once parent::loadView($this->controller, $this->currentAction);
+        $this->redirectUrl();
+        exit;
     }
 
     public function disable(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_funcionario = $param[0];
-        if ($cd_funcionario != "") {
+
+        // Verificando se o código está preechido
+        if (!empty($cd_funcionario)) {
+            // Definindo Código
             $this->Funcionario->cd_funcionario = $cd_funcionario;
+
+            // Desabilitando unidade
             $this->Funcionario->disable();
             $this->redirectUrl();
             exit;
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
-            exit;
         }
+
+        $this->redirectUrl();
+        exit;
     }
 
     public function enable(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_funcionario = $param[0];
-        if ($cd_funcionario != "") {
+
+        // Verificando se o código está preechido
+        if (!empty($cd_funcionario)) {
+            // Definindo Código
             $this->Funcionario->cd_funcionario = $cd_funcionario;
+
+            // Habilitando unidade
             $this->Funcionario->enable();
             $this->redirectUrl();
             exit;
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
-            exit;
         }
+
+        $this->redirectUrl();
+        exit;
     }
 }
