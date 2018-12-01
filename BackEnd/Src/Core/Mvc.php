@@ -7,7 +7,7 @@ class Mvc
     private $controller;
     private $action;
     private $param;
-    private $not_found = 'notfound';
+    private static $not_found = 'Notfound';
     private static $debug = false;
 
     public function __construct()
@@ -19,6 +19,7 @@ class Mvc
         }
 
         $controllerDir = "Controller/" . $this->controller . ".php";
+
         if (file_exists($controllerDir)) {
             require_once($controllerDir);
 
@@ -42,9 +43,21 @@ class Mvc
 
     public function notFound()
     {
-        require_once("Controller/DefaultController.php");
-        $controller = new DefaultController();
-        $controller->notfound('Default', $this->not_found);
+        $this->controller = self::$not_found . 'Controller';
+        $controllerDir = "Controller/" . $this->controller . ".php";
+        if (!isset($this->action)) {
+            $this->action = 'index';
+        }
+        if (!isset($this->param)) {
+            $this->param = '';
+        }
+        if (file_exists($controllerDir)) {
+            require_once($controllerDir);
+            $this->controller = new $this->controller();
+            $this->controller->setAction($this->action);
+            $this->controller->{$this->action}($this->param);
+            exit;
+        }
     }
 
     public function getUrl()
