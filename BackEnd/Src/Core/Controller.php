@@ -40,7 +40,7 @@ abstract class Controller
         return $file;
     }
 
-    public function loadHelper(String $helperName)
+    public function loadHelper($helperName)
     {
         $helperName .= 'Helper';
         require_once "Helper/" . $helperName . ".php";
