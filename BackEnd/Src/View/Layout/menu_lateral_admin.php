@@ -12,5 +12,14 @@
         <li>
             <a href="<?= HOME_URL . 'Acesso' ?>"><span class="fa-stack fa-lg pull-right"></span>Acessos</a>
         </li>
+        <li>
+            <a href="<?= HOME_URL . 'CategoriaImovel' ?>"><span class="fa-stack fa-lg pull-right"></span>Categoria Imóvel</a>
+        </li>
+        <li>
+            <a href="<?= HOME_URL . 'Proprietario' ?>"><span class="fa-stack fa-lg pull-right"></span>Proprietários</a>
+        </li>
+        <li>
+            <a href="<?= HOME_URL . 'Imovel' ?>"><span class="fa-stack fa-lg pull-right"></span>Imóvel</a>
+        </li>
     </ul>
 </nav>
