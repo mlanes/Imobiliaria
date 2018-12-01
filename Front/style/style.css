@@ -1,6 +1,6 @@
-.mapaDiv{
-   height: 800px;
-   width: 800px;
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+body{
+   font-family: 'Noto Sans TC', sans-serif;
 }
 .bg-login{
    position: absolute;
@@ -444,9 +444,16 @@ label { cursor: pointer; }
 
 /*CARDS*/
 .card{
-   display: inline-flex;
+  display: inline-flex;
   border-radius: 0px;
+  border: 2px solid black;
 
+}
+.card-block{
+   border-top: 2px solid black;
+}
+.card-footer{
+   border-top: 2px solid black;
 }
 .card-block{  
   padding: 10px;
