@@ -1,37 +1,87 @@
-<?php
-    require_once parent::loadView('Layout', 'menu_lateral_admin');
-?>
-<h1>Editar Funcionário</h1>
-<form method="post">
-    <label>Primeiro Nome</label><br>
-    <input name="nm_primeiro" value="<?= $nm_primeiro ?>"><br>
-    <label>Nome do meio</label><br>
-    <input name="nm_meio" value="<?= $nm_meio ?>"><br>
-    <label>Último Nome</label><br>
-    <input name="nm_ultimo" value="<?= $nm_ultimo ?>"><br>
-    <label>Data de Nascimento</label><br>
-    <input type="date" name="dt_nascimento" value="<?= $dt_nascimento ?>"><br>
-    <label>CPF</label><br>
-    <input name="cd_cpf" value="<?= $cd_cpf ?>"><br>
-    <label>Status</label><br>
-    <input name="ic_status" value="<?= $ic_status ?>"><br>
-    <label>Categoria</label><br>
-    <select name="cd_categoria">
+<!DOCTYPE html>
+<html lang="<?= SYSTEM_LANG ?>">
+    <head>
         <?php
-            foreach ($categorias as $categoria) {
-                $op = '<option value=' . $categoria->cd_categoria;
-                if ($cd_categoria == $categoria->cd_categoria) {
-                    $op .= ' selected>';
-                }
-                else {
-                    $op .= '>';
-                }
-                echo $op . $categoria->nm_categoria . '</option>';
-            }
+            require_once parent::loadView('Layout', 'head_admin');
         ?>
-    </select><br>
-    <label>Creci</label><br>
-    <input name="cd_creci" value="<?= $cd_creci ?>"><br>
-    <button>Salvar</button>
-</form>
-<a href="<?= HOME_URL . $this->controller ?>">Voltar</a>
+    </head>
+    <body>
+        <?php
+            require_once parent::loadView('Layout', 'menu_superior_admin');
+        ?>
+        <div id="wrapper">
+            <?php require_once parent::loadView('Layout', 'menu_lateral_admin'); ?>
+            <div id="page-content-wrapper">
+                <div class="container-fluid xyz">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Editar Funcionário</h1>
+                            <form method="post">
+                            <?=
+                                    $formHelper->control('nm_primeiro', ['label' => [
+                                        'text' => 'Nome',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->nm_primeiro])
+                                ?>
+                                <?=
+                                    $formHelper->control('nm_meio', ['label' => [
+                                        'text' => 'Sobrenome do Meio',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->nm_meio])
+                                ?>
+                                <?=
+                                    $formHelper->control('nm_ultimo', ['label' => [
+                                        'text' => 'Último Sobrenome',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->nm_ultimo])
+                                ?>
+                                <?=
+                                    $formHelper->control('dt_nascimento', ['label' => [
+                                        'text' => 'Data de Nascimento',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'date', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->dt_nascimento])
+                                ?>
+                                <?=
+                                    $formHelper->control('cd_cpf', ['label' => [
+                                        'text' => 'CPF',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->cd_cpf])
+                                ?>
+                                <div class="form-group">
+                                    <label>Status</label><br>
+                                    <?=
+                                        $formHelper->radio('ic_status', [
+                                            [
+                                                'value' => 'enable',
+                                                'text' => 'Habilitado',
+                                                'block' => false,
+                                                'checked' => true
+                                            ],
+                                            [
+                                                'value' => 'disable',
+                                                'text' => 'Desabilitado',
+                                                'block' => false
+                                            ]
+                                        ])
+                                    ?>
+                                </div>
+                                <?= $formHelper->select("cd_categoria", ['label' => [
+                                        'text' => 'Categoria', 'class' => 'font-weight-bold'
+                                    ], 'class' => 'form-control', 'block' => true], $categoriasOption)
+                                ?>
+                                <?=
+                                    $formHelper->control('cd_creci', ['label' => [
+                                        'text' => 'Creci',
+                                        'class' => 'font-weight-bold',
+                                    ], 'type' => 'text', 'class' => 'form-control', 'block' => true, 'value' => $funcionario->cd_creci])
+                                ?>
+                                <a href="<?= HOME_URL . $this->controller ?>" class="btn btn-md btn-secondary">Voltar</a>
+                                <button class="btn btn-md btn-primary">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -99,66 +99,127 @@ class FuncionarioController extends Controller
 
     public function edit(array $param)
     {
+        // Pegando valor do parâmetro
         $cd_funcionario = $param[0];
-        if ($cd_funcionario != "") {
-            $nm_primeiro = isset($_POST['nm_primeiro']) ? $_POST['nm_primeiro'] : null;
-            $nm_meio = isset($_POST['nm_meio']) ? $_POST['nm_meio'] : null;
-            $nm_ultimo = isset($_POST['nm_ultimo']) ? $_POST['nm_ultimo'] : null;
-            $dt_nascimento = isset($_POST['dt_nascimento']) ? $_POST['dt_nascimento'] : null;
-            $cd_cpf = isset($_POST['cd_cpf']) ? $_POST['cd_cpf'] : null;
 
-            $ic_status = isset($_POST['ic_status']) ? $_POST['ic_status'] : null;
-            $cd_categoria = isset($_POST['cd_categoria']) ? $_POST['cd_categoria'] : null;
-            $cd_creci = isset($_POST['cd_creci']) ? $_POST['cd_creci'] : null;
+        // Verificando se o código está preechido
+        if (!empty($cd_funcionario)) {
 
+            // Chamando Validação
+            $funcionarioValidate = new Add();
+            $funcionarioValidate->validate();
+
+            // Pegando Dados da requisição de forma dinâmica e automática
+            $sanitized = new Sanitize();
+            $data = $sanitized->sanitized();
+
+            // Carregando Model
+            $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
+
+            // Pegando dados
+            $categorias = $this->CategoriaFuncionario->list();
+            $categoriasOption = [];
+            foreach ($categorias as $categoria) {
+                $option = null;
+                $value = $categoria->cd_categoria;
+                $text = $categoria->nm_categoria;
+                $option["value"] = $value;
+                $option["text"] = $text;
+                $categoriasOption[] = $option;
+            }
+
+            // Definindo Código
+            $this->Funcionario->cd_funcionario = $cd_funcionario;
+
+            // Buscando Dados
+            $funcionario = $this->Funcionario->select();
+
+            // Carregando Model
             $this->Pessoa = parent::loadModel("Pessoa");
 
-            if ($nm_primeiro != null && $nm_meio != null && $nm_ultimo != null && $dt_nascimento != null
-            && $cd_cpf != null && $ic_status != null && $cd_categoria != null) {
-                $this->Funcionario->cd_funcionario = $cd_funcionario;
-                $this->Funcionario->ic_status = $ic_status;
-                $this->Funcionario->cd_categoria = $cd_categoria;
-                $this->Funcionario->cd_creci = $cd_creci;
+            // Formatando Status para formulário
+            if ($funcionario->ic_status == 1) {
+                $ic_status = 'enable';
+            } else {
+                $ic_status = 'disable';
+            }
+
+            // Verificando erro de Validação
+            if (!$funcionarioValidate->hasErrors()) {
+                $this->Funcionario->setIcStatus($data->ic_status);
+                $this->Funcionario->cd_categoria = $data->cd_categoria;
+                $this->Funcionario->cd_creci = $data->cd_creci;
                 $funcionario = $this->Funcionario->select();
                 $cd_pessoa = $funcionario->cd_pessoa;
                 $this->Funcionario->cd_pessoa = $cd_pessoa;
                 $this->Funcionario->update();
-
                 $this->Pessoa->cd_pessoa = $cd_pessoa;
-                $this->Pessoa->nm_primeiro = $nm_primeiro;
-                $this->Pessoa->nm_meio = $nm_meio;
-                $this->Pessoa->nm_ultimo = $nm_ultimo;
+                $this->Pessoa->nm_primeiro = $data->nm_primeiro;
+                $this->Pessoa->nm_meio = $data->nm_meio;
+                $this->Pessoa->nm_ultimo = $data->nm_ultimo;
                 $this->Pessoa->dt_nascimento = $dt_nascimento;
                 $this->Pessoa->dt_criado = $funcionario->dt_criado;
                 $this->Pessoa->dt_editado = date("Y-m-d H:i:s");
-                $this->Pessoa->cd_cpf = $cd_cpf;
-
+                $this->Pessoa->cd_cpf = $data->cd_cpf;
                 $this->Pessoa->update();
+
+                // Redirecionando para a action index
                 $this->redirectUrl($this->controller);
                 exit;
-            } else {
-                $this->Funcionario->cd_funcionario = $cd_funcionario;
-                $funcionario = $this->Funcionario->select();
-                $ic_status = $funcionario->ic_status;
-                $cd_categoria = $funcionario->cd_categoria;
-                $cd_creci = $funcionario->cd_creci;
-                $cd_pessoa = $funcionario->cd_pessoa;
-                $nm_primeiro = $funcionario->nm_primeiro;
-                $nm_meio = $funcionario->nm_meio;
-                $nm_ultimo = $funcionario->nm_ultimo;
-                $dt_nascimento = $funcionario->dt_nascimento;
-                $dt_criado = $funcionario->dt_criado;
-                $dt_editado = $funcionario->dt_editado;
-                $cd_cpf = $funcionario->cd_cpf;
-                $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
-                $categorias = $this->CategoriaFuncionario->list();
             }
-        } else {
-            echo 'É necessário um código';
-            $this->redirectUrl();
-            exit;
+
+        //     if ($nm_primeiro != null && $nm_meio != null && $nm_ultimo != null && $dt_nascimento != null
+        //     && $cd_cpf != null && $ic_status != null && $cd_categoria != null) {
+        //         $this->Funcionario->cd_funcionario = $cd_funcionario;
+        //         $this->Funcionario->ic_status = $ic_status;
+        //         $this->Funcionario->cd_categoria = $cd_categoria;
+        //         $this->Funcionario->cd_creci = $cd_creci;
+        //         $funcionario = $this->Funcionario->select();
+        //         $cd_pessoa = $funcionario->cd_pessoa;
+        //         $this->Funcionario->cd_pessoa = $cd_pessoa;
+        //         $this->Funcionario->update();
+
+        //         $this->Pessoa->cd_pessoa = $cd_pessoa;
+        //         $this->Pessoa->nm_primeiro = $nm_primeiro;
+        //         $this->Pessoa->nm_meio = $nm_meio;
+        //         $this->Pessoa->nm_ultimo = $nm_ultimo;
+        //         $this->Pessoa->dt_nascimento = $dt_nascimento;
+        //         $this->Pessoa->dt_criado = $funcionario->dt_criado;
+        //         $this->Pessoa->dt_editado = date("Y-m-d H:i:s");
+        //         $this->Pessoa->cd_cpf = $cd_cpf;
+        //         $this->Pessoa->update();
+        //         $this->redirectUrl($this->controller);
+        //         exit;
+        //     } else {
+        //         $this->Funcionario->cd_funcionario = $cd_funcionario;
+        //         $funcionario = $this->Funcionario->select();
+        //         $ic_status = $funcionario->ic_status;
+        //         $cd_categoria = $funcionario->cd_categoria;
+        //         $cd_creci = $funcionario->cd_creci;
+        //         $cd_pessoa = $funcionario->cd_pessoa;
+        //         $nm_primeiro = $funcionario->nm_primeiro;
+        //         $nm_meio = $funcionario->nm_meio;
+        //         $nm_ultimo = $funcionario->nm_ultimo;
+        //         $dt_nascimento = $funcionario->dt_nascimento;
+        //         $dt_criado = $funcionario->dt_criado;
+        //         $dt_editado = $funcionario->dt_editado;
+        //         $cd_cpf = $funcionario->cd_cpf;
+        //         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
+        //         $categorias = $this->CategoriaFuncionario->list();
+        //     }
+        // } else {
+        //     echo 'É necessário um código';
+        //     $this->redirectUrl();
+        //     exit;
         }
 
+        // Caregando Helpers
+        $bootstrapHelper = parent::loadHelper("Bootstrap");
+        $styleHelper = parent::loadHelper("Style");
+        $linkHelper = parent::loadHelper("Link");
+        $formHelper = parent::loadHelper("Form");
+
+        // Carregando View
         require_once parent::loadView($this->controller, $this->currentAction);
     }
 

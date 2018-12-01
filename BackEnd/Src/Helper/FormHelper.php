@@ -116,7 +116,6 @@ class FormHelper extends Helper
     {
         if (isset($_POST[$fieldName])) {
             if ($_POST[$fieldName] == $option['value']) {
-                echo 'Post = ' . $_POST[$fieldName] . ' opV = ' . $option['value'];
                 $this->selected = 'selected';
             }
             else {
