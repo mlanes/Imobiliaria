@@ -8,6 +8,6 @@ class Login extends Validate
 {
     public function validate()
     {
-        $this->required(['login', 'password']);
+        $this->required(['nm_login', 'nm_password']);
     }
 }
