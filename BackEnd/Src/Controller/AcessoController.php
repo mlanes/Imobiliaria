@@ -149,7 +149,7 @@ class AcessoController extends Controller
         $auth = new Auth();
         
         // Verificando se o usuário está logado
-        if (!$auth->verifyAuthenticated()) {
+        if ($auth->verifyAuthenticated()) {
             $cd_acesso = $param[0];
             if (!empty($cd_acesso)) {
                 $this->Acesso->cd_acesso = $cd_acesso;
@@ -173,7 +173,7 @@ class AcessoController extends Controller
         $auth = new Auth();
         
         // Verificando se o usuário está logado
-        if (!$auth->verifyAuthenticated()) {
+        if ($auth->verifyAuthenticated()) {
             $cd_acesso = $param[0];
             if (!empty($cd_acesso)) {
                 $this->Acesso->cd_acesso = $cd_acesso;
