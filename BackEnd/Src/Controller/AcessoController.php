@@ -14,7 +14,7 @@ class AcessoController extends Controller
         $this->Acesso = parent::loadModel("Acesso");
     }
 
-    public function index($param)
+    public function index()
     {
         $acessos = $this->Acesso->list();
         $count = $this->Acesso->countItems();
