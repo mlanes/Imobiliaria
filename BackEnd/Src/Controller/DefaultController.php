@@ -1,6 +1,7 @@
 <?php
 
 use Core\Controller;
+use Auth\Auth;
 
 class DefaultController extends Controller
 {
@@ -14,13 +15,24 @@ class DefaultController extends Controller
 
     public function dashboard()
     {
-        // Caregando Helpers
-        $bootstrapHelper = parent::loadHelper("Bootstrap");
-        $styleHelper = parent::loadHelper("Style");
-        $linkHelper = parent::loadHelper("Link");
+        // Instanciando a classe
+        $auth = new Auth();
 
-        // Carregando View
-        require_once parent::loadView($this->controller, $this->currentAction);
+        // Verificando se o usuário está logado
+        if ($auth->verifyAuthenticated()) {
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->currentAction);
+            exit;
+        }
+
+        // Redirecionando para o login
+        $this->redirectUrl('Acesso/Login');
+        exit;
     }
 
     public function notfound($folderName, $fileName)
