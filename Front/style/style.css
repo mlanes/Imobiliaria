@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
 body{
    font-family: 'Noto Sans TC', sans-serif;
-}
+   padding: 5%;
+   font-size: 16px;
+   line-height: 1.6;
+   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+ }
 .bg-login{
    position: absolute;
     width: 100%;
@@ -182,6 +186,19 @@ select{
 .btn-commom:hover{
    background-color: #535353;
  }
+
+ .btn-return{
+   width: 100%;
+   background-color: rgb(41, 126, 196);
+   color: #fff;
+   transition: background-color 0.5s;
+   margin-right: 5px;
+ }
+
+ .btn-return{
+   background-color: rgb(70, 147, 211);
+ }
+
  .btn-confirm{
    float: right;
    margin-top: 10px;
@@ -293,12 +310,6 @@ select{
  /*Form*/
  $brand-primary: #428bca;
 
-body {
-  padding: 5%;
-  font-size: 16px;
-  line-height: 1.6;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-}
 
 .title{
    color: #ccc;
@@ -441,8 +452,23 @@ label { cursor: pointer; }
 ::-moz-placeholder { color:#ccc; }
 ::-webkit-input-placeholder { color:#ccc; }
 
+.div404{
+   margin-top: 10%;
+   margin-left: 33%;
+   margin-right: 33%;
 
-/*CARDS*/
+}
+.image404{
+   margin-left: 80px;
+   margin-bottom: 30px;
+   background-image: url('../assets/404.svg');
+   background-repeat: no-repeat; 
+   display: block;
+
+}
+
+
+/*CARDS*/   
 .card{
   display: inline-flex;
   border-radius: 0px;
@@ -450,7 +476,7 @@ label { cursor: pointer; }
 
 }
 .card-block{
-   border-top: 2px solid black;
+   border-top: 2px solid black;  
 }
 .card-footer{
    border-top: 2px solid black;
