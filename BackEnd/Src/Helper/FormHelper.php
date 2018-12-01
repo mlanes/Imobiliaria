@@ -8,6 +8,7 @@ class FormHelper extends Helper
     private $type;
     private $value;
     private $checked;
+    private $selected;
 
     public function __construct()
     {
@@ -30,26 +31,14 @@ class FormHelper extends Helper
         $name = 'name="'. $fieldName . '"';
         $this->value = '';
         $this->checked = '';
-        if (isset($options['value'])) {
-            $this->setValue($fieldName, $options['value']);
+        
+        if (!isset($options['value'])) {
+            $options['value'] = '';
         }
-        $this->setChecked($fieldName, $options, $value);
-        // if (isset($_POST[$fieldName])) {
-        //     if ($this->type != 'radio') {
-        //         if (isset($options['value'])) {
-        //             echo $_POST[$fieldName];
-        //             $this->value = 'value="' . $_POST[$fieldName] . '"';
-        //         }
-        //     } else {
-        //         $this->value = 'value="' . $options['value'] . '" ';
-        //         if ($_POST[$fieldName] == $options['value']) {
-        //             $checked = 'checked';
-        //         }
-        //     }
-        // } elseif (isset($options['checked']) && $options['checked'] == true) {
-        //     $checked = 'checked';
-        // }
 
+        $this->setValue($fieldName, $options['value']);
+        
+        $this->setChecked($fieldName, $options, $value);
         
         $id = 'id="' . $this->id . '"';
         $input = "<input {$type} {$name} {$id} {$attr} " . $this->value . $this->checked . ">";
@@ -93,19 +82,61 @@ class FormHelper extends Helper
         foreach ($options as $key => $data) {
             $data['type'] = 'radio';
             $data['label'] = '';
-            $element .= $this->control($fieldName, $data,  $value) . $data['text'];
+            $element .= $this->control($fieldName, $data, $value) . $data['text'];
         }
         return $element;
+    }
+
+    public function select($fieldName, $options, $items, $value = null)
+    {
+        $this->selected = '';
+        $label = '';
+        if ($options['label'] != false) {
+            $label = $this->label($fieldName, $options['label']);
+        }
+        $attr = $this->setAttributes($options);
+        $selectTag = '<select name="' . $fieldName . '"' . $attr . '>';
+        foreach ($items as $iten) {
+            $this->setSelected($fieldName, $iten, $value);
+            $option = '<option value="' . $iten['value'] . '"' . $this->selected . '>' . $iten['text'] . '</option>';
+            $selectTag .= $option;
+        }
+        $selectTag .= '</select>';
+        
+        if (isset($options['block']) && $options['block'] != false) {
+            $block = $label . $selectTag;
+            $block = '<div class="form-group">' . $block . '</div>';
+            return $block;
+        }
+        return $selectTag;
+        
+    }
+
+    private function setSelected($fieldName, $option = null, $value)
+    {
+        if (isset($_POST[$fieldName])) {
+            if ($_POST[$fieldName] == $option['value']) {
+                echo 'Post = ' . $_POST[$fieldName] . ' opV = ' . $option['value'];
+                $this->selected = 'selected';
+            }
+            else {
+                $this->selected = '';
+            }
+        } elseif (isset($value) && $option['value'] == $value) {
+            $this->selected = 'selected';
+        } elseif (isset($option['selected']) && $option['selected'] == true) {
+            $this->selected = 'selected';
+        }
+        else {
+            $this->selected = '';
+        }
     }
 
     private function setValue($fieldName, $value = null)
     {
         if ($this->type == 'radio') {
-            // echo 'Radio.';
-            // var_dump($value);
             $this->value = $value;
-        }
-        else {
+        } else {
             if (isset($value)) {
                 if (isset($_POST[$fieldName])) {
                     $this->value = $_POST[$fieldName];
@@ -116,7 +147,7 @@ class FormHelper extends Helper
                 if (isset($_POST[$fieldName])) {
                     $this->value = $_POST[$fieldName];
                 }
-            }   
+            }
         }
 
         if (!empty($this->value)) {
@@ -124,42 +155,19 @@ class FormHelper extends Helper
         }
     }
 
-    public function setChecked($fieldName, $options = null, $value = null)
+    private function setChecked($fieldName, $options = null, $value = null)
     {
         if ($this->type == 'radio') {
-            // echo $options['value'];
             if (isset($_POST[$fieldName])) {
-                // echo '<br>Valor do Post: ' . $_POST[$fieldName];
-                // echo 'Rota 1';
                 if ($_POST[$fieldName] == $options['value']) {
                     $this->checked = 'checked';
                 }
-            }
-            elseif (isset($value) && $options['value'] == $value) {
-                // echo 'Rota 3 ';
+            } elseif (isset($value) && $options['value'] == $value) {
                 $this->checked = 'checked';
-            }
-            elseif (isset($options['checked']) && $options['checked'] == true) {
-                // echo 'Rota 2';
+            } elseif (isset($options['checked']) && $options['checked'] == true) {
                 $this->checked = 'checked';
             }
         }
-
-        // if (isset($_POST[$fieldName])) {
-        //     if ($this->type != 'radio') {
-        //         if (isset($options['value'])) {
-        //             echo $_POST[$fieldName];
-        //             $this->value = 'value="' . $_POST[$fieldName] . '"';
-        //         }
-        //     } else {
-        //         $this->value = 'value="' . $options['value'] . '" ';
-        //         if ($_POST[$fieldName] == $options['value']) {
-        //             $checked = 'checked';
-        //         }
-        //     }
-        // } elseif (isset($options['checked']) && $options['checked'] == true) {
-        //     $checked = 'checked';
-        // }
     }
 
     private function setId($name, $options)
