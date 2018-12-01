@@ -66,12 +66,12 @@ CREATE TABLE tb_proprietario
         PRIMARY KEY (cd_proprietario),
     CONSTRAINT fk_pessoa_proprietario
         FOREIGN KEY (cd_pessoa)
-            REFERENCES tb_proprietario(cd_pessoa)
+            REFERENCES tb_pessoa(cd_pessoa)
 );
 
 CREATE TABLE tb_categoria_imovel
 (
-    cd_categoria_imovel INT NOT NULL AUTO_INCREMENT;
+    cd_categoria_imovel INT NOT NULL AUTO_INCREMENT,
     nm_categoria_imovel VARCHAR(45) NOT NULL,
     CONSTRAINT pk_categoria_imovel
         PRIMARY KEY (cd_categoria_imovel)
