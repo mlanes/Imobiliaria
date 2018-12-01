@@ -24,6 +24,16 @@ class CategoriaImovelModel extends Model
         return $this->$name;
     }
 
+    public function setIcStatus($value)
+    {
+        if ($value == "enable") {
+            $this->ic_status = 1;
+        }
+        else {
+            $this->ic_status = 0;
+        }
+    }
+
     public function countItems()
     {
         try {
