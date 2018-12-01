@@ -167,50 +167,6 @@ class FuncionarioController extends Controller
                 $this->redirectUrl($this->controller);
                 exit;
             }
-
-        //     if ($nm_primeiro != null && $nm_meio != null && $nm_ultimo != null && $dt_nascimento != null
-        //     && $cd_cpf != null && $ic_status != null && $cd_categoria != null) {
-        //         $this->Funcionario->cd_funcionario = $cd_funcionario;
-        //         $this->Funcionario->ic_status = $ic_status;
-        //         $this->Funcionario->cd_categoria = $cd_categoria;
-        //         $this->Funcionario->cd_creci = $cd_creci;
-        //         $funcionario = $this->Funcionario->select();
-        //         $cd_pessoa = $funcionario->cd_pessoa;
-        //         $this->Funcionario->cd_pessoa = $cd_pessoa;
-        //         $this->Funcionario->update();
-
-        //         $this->Pessoa->cd_pessoa = $cd_pessoa;
-        //         $this->Pessoa->nm_primeiro = $nm_primeiro;
-        //         $this->Pessoa->nm_meio = $nm_meio;
-        //         $this->Pessoa->nm_ultimo = $nm_ultimo;
-        //         $this->Pessoa->dt_nascimento = $dt_nascimento;
-        //         $this->Pessoa->dt_criado = $funcionario->dt_criado;
-        //         $this->Pessoa->dt_editado = date("Y-m-d H:i:s");
-        //         $this->Pessoa->cd_cpf = $cd_cpf;
-        //         $this->Pessoa->update();
-        //         $this->redirectUrl($this->controller);
-        //         exit;
-        //     } else {
-        //         $this->Funcionario->cd_funcionario = $cd_funcionario;
-        //         $funcionario = $this->Funcionario->select();
-        //         $ic_status = $funcionario->ic_status;
-        //         $cd_categoria = $funcionario->cd_categoria;
-        //         $cd_creci = $funcionario->cd_creci;
-        //         $cd_pessoa = $funcionario->cd_pessoa;
-        //         $nm_primeiro = $funcionario->nm_primeiro;
-        //         $nm_meio = $funcionario->nm_meio;
-        //         $nm_ultimo = $funcionario->nm_ultimo;
-        //         $dt_nascimento = $funcionario->dt_nascimento;
-        //         $dt_criado = $funcionario->dt_criado;
-        //         $dt_editado = $funcionario->dt_editado;
-        //         $cd_cpf = $funcionario->cd_cpf;
-        //         $this->CategoriaFuncionario = parent::loadModel("CategoriaFuncionario");
-        //         $categorias = $this->CategoriaFuncionario->list();
-        //     }
-        // } else {
-        //     echo 'É necessário um código';
-        //     $this->redirectUrl();
-        //     exit;
         }
 
         // Caregando Helpers
