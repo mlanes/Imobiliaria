@@ -117,7 +117,7 @@
                      </div>
                   </div>
                </div>
-               
+            </div>
                <div class="row">
                   <div class="col-12">
                         <style>
@@ -143,6 +143,7 @@
                             // The marker, positioned at Uluru
                             var marker = new google.maps.Marker({position: uluru, map: map});
                           }
+                          
                               </script>
                               <!--Load the API from the specified URL
                               * The async attribute allows the browser to render the page while the API loads
@@ -150,12 +151,11 @@
                               * The callback parameter executes the initMap() function
                               -->
                               <!--Link da API com a chave-->
-                              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDGm2MPbtHN53rSmnfPQPsucmJcLUta8c&callback=initMap"
-                              async defer></script>
+                            
                   </div>
                   
                </div>
-            </div>
+         
          </div>
       </div>
       <!-- /#page-content-wrapper -->
@@ -167,6 +167,8 @@
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="node_modules/popper.js/dist/popper.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDGm2MPbtHN53rSmnfPQPsucmJcLUta8c&callback=initMap"
+async defer></script>
 <script src="script/index.js"></script>
 
 </html>
