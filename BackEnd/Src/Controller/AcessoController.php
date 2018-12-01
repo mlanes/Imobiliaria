@@ -79,7 +79,7 @@ class AcessoController extends Controller
             exit;
         }
 
-        // Redirecionando para o login
+        // Redirecionando para o dashboard
         $this->redirectUrl(' ');
         exit;
     }
@@ -107,11 +107,12 @@ class AcessoController extends Controller
         $auth = new Auth();
         
         // Verificando se o usuário está logado
-        if (!$auth->verifyAuthenticated()) {
+        if ($auth->verifyAuthenticated()) {
+            exit;
         }
 
         // Redirecionando para o login
-        $this->redirectUrl(' ');
+        $this->redirectUrl('Acesso/Login');
         exit;
     }
 
@@ -121,11 +122,12 @@ class AcessoController extends Controller
         $auth = new Auth();
         
         // Verificando se o usuário está logado
-        if (!$auth->verifyAuthenticated()) {
+        if ($auth->verifyAuthenticated()) {
+            exit;
         }
 
         // Redirecionando para o login
-        $this->redirectUrl(' ');
+        $this->redirectUrl('Acesso/Login');
         exit;
     }
 
@@ -135,11 +137,12 @@ class AcessoController extends Controller
         $auth = new Auth();
         
         // Verificando se o usuário está logado
-        if (!$auth->verifyAuthenticated()) {
+        if ($auth->verifyAuthenticated()) {
+            exit;
         }
 
         // Redirecionando para o login
-        $this->redirectUrl(' ');
+        $this->redirectUrl('Acesso/Login');
         exit;
     }
 
@@ -157,13 +160,13 @@ class AcessoController extends Controller
                 $this->redirectUrl();
                 exit;
             }
-            echo 'É necessário um código';
+
             $this->redirectUrl();
             exit;
         }
 
         // Redirecionando para o login
-        $this->redirectUrl(' ');
+        $this->redirectUrl('Acesso/Login');
         exit;
     }
 
@@ -181,13 +184,13 @@ class AcessoController extends Controller
                 $this->redirectUrl();
                 exit;
             }
-            echo 'É necessário um código';
+
             $this->redirectUrl();
             exit;
         }
 
         // Redirecionando para o login
-        $this->redirectUrl(' ');
+        $this->redirectUrl('Acesso/Login');
         exit;
     }
 }

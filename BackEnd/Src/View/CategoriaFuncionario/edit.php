@@ -17,16 +17,6 @@
                         <div class="col-lg-12">
                             <h1>Editar - Categoria do Funcionário</h1>
                             <form method="post">
-                                <!-- <label>Nome</label><br>
-                                <input name="nm_categoria" value="<?= $nm_categoria ?>"><br>
-                                <label>Status</label><br>
-                                <input type="radio" name="ic_status" value="true" <?php if ($ic_status == 1) {echo 'checked';} ?>>Habilitado<br>
-                                <input type="radio" name="ic_status" value="0" <?php if ($ic_status == 0) {echo 'checked';} ?>>Desabilitado<br>
-                                <label>Sigla</label><br>
-                                <input name="nm_sigla" value="<?= $nm_sigla ?>"><br>
-                                <button>Salvar</button> -->
-                            </form>
-                            <form method="post">
                                 <?=
                                     $formHelper->control('nm_categoria', ['label' => [
                                         'text' => 'Nome',
@@ -67,4 +57,3 @@
         </div>
     </body>
 </html>
-<a href="<?= HOME_URL . $this->controller ?>">Voltar</a>

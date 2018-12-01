@@ -122,7 +122,6 @@ class CategoriaFuncionarioController extends Controller
 
                 // Verificando erro de Validação
                 if (!$catValidate->hasErrors()) {
-                    $this->CategoriaFuncionario->cd_categoria = $cd_categoria;
                     $this->CategoriaFuncionario->nm_categoria = $data->nm_categoria;
                     $this->CategoriaFuncionario->setIcStatus($data->ic_status);
                     $this->CategoriaFuncionario->nm_sigla = $data->nm_sigla;
