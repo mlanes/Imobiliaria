@@ -20,7 +20,7 @@
 }
 .painel{
    padding: 20px;
-   background-color: rgba(0, 0, 0, .8);
+   background-color: rgba(0, 0, 0, .9);
 }
 .botaoLogin{
    margin-top: 10px;
@@ -279,6 +279,12 @@ body {
   font-size: 16px;
   line-height: 1.6;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.title{
+   color: #ccc;
+   text-align: center;
+   font-size: 2em;
 }
 
 .form-group {
