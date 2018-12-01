@@ -14,14 +14,18 @@ class DefaultController extends Controller
 
     public function dashboard()
     {
+        // Caregando Helpers
         $bootstrapHelper = parent::loadHelper("Bootstrap");
         $styleHelper = parent::loadHelper("Style");
         $linkHelper = parent::loadHelper("Link");
+
+        // Carregando View
         require_once parent::loadView($this->controller, $this->currentAction);
     }
 
     public function notfound($folderName, $fileName)
     {
+        // Carregando View
         require_once parent::loadView($folderName, $fileName);
     }
 }
