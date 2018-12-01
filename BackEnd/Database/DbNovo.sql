@@ -72,6 +72,7 @@ CREATE TABLE tb_proprietario
 CREATE TABLE tb_categoria_imovel
 (
     cd_categoria_imovel INT NOT NULL AUTO_INCREMENT,
+    ic_status BOOLEAN NOT NULL,
     nm_categoria_imovel VARCHAR(45) NOT NULL,
     CONSTRAINT pk_categoria_imovel
         PRIMARY KEY (cd_categoria_imovel)
@@ -104,7 +105,7 @@ CREATE TABLE tb_imovel
 INSERT INTO tb_categoria_funcionario (cd_categoria, ic_status, nm_categoria, nm_sigla) VALUES (1, 1, 'Administrador', 'ADM');
 
 -- Categorias de Imóvel
-INSERT INTO tb_categoria_imovel (cd_categoria_imovel, nm_categoria_imovel) VALUES (1, 'Casa'), (2, 'Apartamento');
+INSERT INTO tb_categoria_imovel (cd_categoria_imovel, nm_categoria_imovel, ic_status) VALUES (1, 'Casa', 1), (2, 'Apartamento', 1);
 
 
 
