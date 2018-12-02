@@ -11,6 +11,6 @@ class StyleHelper extends Helper
 
     public function css()
     {
-        return '<link rel="stylesheet" href="http://' . HOSTNAME . '/Imobiliaria/Front/style/style.css">';
+        return '<link rel="stylesheet" href="http://' . HOSTNAME . '/Imobiliaria/BackEnd/Web/style/style.css">';
     }
 }

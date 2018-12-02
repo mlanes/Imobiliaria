@@ -134,5 +134,6 @@
                 </div>
             </div>
         </div>
+        <?php require_once parent::loadView('Layout', 'scripts'); ?>
     </body>
 </html>

@@ -11,6 +11,6 @@ class BootstrapHelper extends Helper
 
     public function css()
     {
-        return '<link rel="stylesheet" href="http://' . HOSTNAME . '/Imobiliaria/Front/node_modules/bootstrap/dist/css/bootstrap.min.css">';
+        return '<link rel="stylesheet" href="http://' . HOSTNAME . '/Imobiliaria/BackEnd/Web/style/bootstrap.min.css">';
     }
 }
