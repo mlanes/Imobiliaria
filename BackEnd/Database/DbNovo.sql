@@ -61,6 +61,7 @@ CREATE TABLE tb_acesso
 CREATE TABLE tb_proprietario
 (
     cd_proprietario INT NOT NULL AUTO_INCREMENT,
+    ic_status BOOLEAN NOT NULL,
     cd_pessoa INT NOT NULL,
     CONSTRAINT pk_proprietario
         PRIMARY KEY (cd_proprietario),
