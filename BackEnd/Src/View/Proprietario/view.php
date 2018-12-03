@@ -10,7 +10,6 @@
             require_once parent::loadView('Layout', 'menu_superior_admin');
         ?>
         <div id="wrapper">
-            <?php require_once parent::loadView('Layout', 'menu_lateral_admin'); ?>
             <div id="page-content-wrapper">
                 <div class="container-fluid xyz">
                     <div class="row">

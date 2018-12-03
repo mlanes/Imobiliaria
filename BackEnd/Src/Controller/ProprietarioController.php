@@ -78,7 +78,7 @@ class ProprietarioController extends Controller
                 $this->Proprietario->setIcStatus($data->ic_status);
                 $this->Proprietario->cd_pessoa = $cd_pessoa;
                 $this->Proprietario->insert();
-
+                
                 // Redirecionando para a action index
                 $this->redirectUrl($this->controller);
                 exit;

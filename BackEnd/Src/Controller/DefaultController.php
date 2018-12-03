@@ -20,6 +20,9 @@ class DefaultController extends Controller
 
         // Verificando se o usuário está logado
         if ($auth->verifyAuthenticated()) {
+            $this->Imovel = parent::loadModel("Imovel");
+            $imoveis = $this->Imovel->list();
+            $this->CategoriaImovel = parent::loadModel("CategoriaImovel");
             // Caregando Helpers
             $bootstrapHelper = parent::loadHelper("Bootstrap");
             $styleHelper = parent::loadHelper("Style");

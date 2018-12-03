@@ -22,7 +22,7 @@ CREATE TABLE tb_pessoa
     dt_nascimento DATE NOT NULL,
     dt_criado DATETIME NOT NULL,
     dt_editado DATETIME NOT NULL,
-	cd_cpf INT(13),
+	cd_cpf VARCHAR(15),
 	CONSTRAINT pk_pessoa
 		PRIMARY KEY(cd_pessoa)
 );
