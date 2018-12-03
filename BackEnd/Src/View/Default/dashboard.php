@@ -93,7 +93,7 @@
                           }
                           
                               </script>
-                              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDGm2MPbtHN53rSmnfPQPsucmJcLUta8c&callback=initMap"
+                             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDGm2MPbtHN53rSmnfPQPsucmJcLUta8c&callback=initMap"
 async defer></script>
                               <!--Load the API from the specified URL
                               * The async attribute allows the browser to render the page while the API loads
