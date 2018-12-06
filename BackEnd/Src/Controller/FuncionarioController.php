@@ -319,4 +319,70 @@ class FuncionarioController extends Controller
         $this->redirectUrl('Acesso/Login');
         exit;
     }
+
+    public function csv()
+    {
+
+        // Instanciando a classe
+        $auth = new Auth();
+        
+        // Verificando se o usuário está logado
+        if ($auth->verifyAuthenticated()) {
+            echo getcwd();
+            if ($_FILES) {
+                var_dump($_FILES);
+                $destino = "Upload/" . $_FILES["csv"]["name"];
+                $status = move_uploaded_file(
+                    $_FILES["csv"]["tmp_name"],
+                    $destino);
+                var_dump($destino);
+                if ($status) {
+                    $file = fopen("Upload/".$_FILES["csv"]["name"],"r");
+                    if ($file) {
+                        $line = fgetcsv($file, 100, ";");
+                        $line = fgetcsv($file, 100, ";");
+                        $this->Pessoa = parent::loadModel("Pessoa");
+                        while($line != null) {
+                            $this->Pessoa->nm_primeiro = $line[0];
+                            $this->Pessoa->nm_meio = $line[1];
+                            $this->Pessoa->nm_ultimo = $line[2];
+                            $this->Pessoa->dt_nascimento = $line[3];
+                            $this->Pessoa->dt_criado = date("Y-m-d H:i:s");
+                            $this->Pessoa->dt_editado = date("Y-m-d H:i:s");
+                            $this->Pessoa->cd_cpf = $line[4];
+                            $this->Pessoa->insert();
+
+                            $cd_pessoa = $this->Pessoa->lastId;
+                            
+                            $this->Funcionario->ic_status = $line[5];
+                            $this->Funcionario->cd_categoria = $line[6];
+                            $this->Funcionario->cd_creci = $line[7];
+                            $this->Funcionario->cd_pessoa = $cd_pessoa;
+                            $this->Funcionario->insert();
+                            $nome = $line[1];
+                            $line = fgetcsv($file, 100, ";");
+                        }
+                        fclose($file);
+                        exit;
+                    }
+                }
+
+                
+            }
+
+            // Caregando Helpers
+            $bootstrapHelper = parent::loadHelper("Bootstrap");
+            $styleHelper = parent::loadHelper("Style");
+            $linkHelper = parent::loadHelper("Link");
+
+            // Carregando View
+            require_once parent::loadView($this->controller, $this->currentAction);
+            exit;
+        }
+        
+        // Redirecionando para o login
+        $this->redirectUrl('Acesso/Login');
+        exit;
+    }
+
 }
